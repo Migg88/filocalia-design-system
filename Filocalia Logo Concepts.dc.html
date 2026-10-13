@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Italiana&family=Gilda+Display&family=DM+Mono:wght@400&family=Cormorant+Garamond:wght@500;600&family=Elsie:wght@400&family=Cinzel:wght@500&family=Cinzel+Decorative:wght@400&family=Marcellus+SC&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F7EDE6;color:#4A2C4F;font-family:'Marcellus',serif}a{color:#B4553F}a:hover{color:#4A2C4F}</style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="sym-a" viewBox="0 0 100 100">
+      <g style="stroke:#4A2C4F;stroke-width:2;stroke-linejoin:round">
+        <path transform="rotate(-38 50 62)" d="M50 26 C59 37 60 50 50 62 C40 50 41 37 50 26 Z" style="fill:#B4553F"></path>
+        <path transform="rotate(38 50 62)" d="M50 26 C59 37 60 50 50 62 C40 50 41 37 50 26 Z" style="fill:#B4553F"></path>
+        <path d="M50 12 C62 27 63 45 50 62 C37 45 38 27 50 12 Z" style="fill:#E8B4B8"></path>
+        <path d="M50 24 C46 36 46 48 50 57" style="fill:none;stroke-width:1.4;stroke-linecap:round"></path>
+      </g>
+      <path d="M47.5 87 C31 86 16 74 11 55 C23 63 35 69 47.5 72 Z" style="fill:#4A2C4F"></path>
+      <path d="M52.5 87 C69 86 84 74 89 55 C77 63 65 69 52.5 72 Z" style="fill:#4A2C4F"></path>
+      <path d="M11 55 C4 47 4 37 11 32 C17 28 23 33 20 38 C18 41 14 39 15.5 36.5" style="fill:none;stroke:#4A2C4F;stroke-width:3;stroke-linecap:round"></path>
+      <path d="M89 55 C96 47 96 37 89 32 C83 28 77 33 80 38 C82 41 86 39 84.5 36.5" style="fill:none;stroke:#4A2C4F;stroke-width:3;stroke-linecap:round"></path>
+      <circle cx="50" cy="67" r="3" style="fill:#D4B483"></circle>
+    </symbol>
+
+    <symbol id="sym-b" viewBox="0 0 100 100">
+      <path d="M50 18 A30 30 0 0 0 20 48 L20 79 C20 89 13 92 9 88 C6 85 9 81 12.5 83" style="fill:none;stroke:#4A2C4F;stroke-width:3;stroke-linecap:round"></path>
+      <path d="M50 18 A30 30 0 0 1 80 48 L80 79 C80 89 87 92 91 88 C94 85 91 81 87.5 83" style="fill:none;stroke:#4A2C4F;stroke-width:3;stroke-linecap:round"></path>
+      <g style="stroke:#4A2C4F;stroke-width:1.8;stroke-linejoin:round">
+        <path transform="rotate(-50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(-25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+        <path transform="rotate(25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+        <path d="M50 74 C41 60 42 43 50 30 C58 43 59 60 50 74 Z" style="fill:#E8B4B8"></path>
+      </g>
+      <path d="M50 76 C42 76 36 80 32 87 C41 89 47 85 50 78 C53 85 59 89 68 87 C64 80 58 76 50 76 Z" style="fill:#4A2C4F"></path>
+      <circle cx="50" cy="74" r="3.4" style="fill:#D4B483;stroke:#4A2C4F;stroke-width:1.6"></circle>
+      <path d="M50 12.5 L54.5 18 L50 23.5 L45.5 18 Z" style="fill:#D4B483;stroke:#4A2C4F;stroke-width:1.6;stroke-linejoin:round"></path>
+    </symbol>
+
+    <symbol id="sym-c" viewBox="0 0 100 100">
+      <g id="c-tendrils" style="fill:none;stroke:#4A2C4F;stroke-width:3;stroke-linecap:round">
+        <path d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+        <path transform="rotate(90 50 50)" d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+        <path transform="rotate(180 50 50)" d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+        <path transform="rotate(270 50 50)" d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+      </g>
+      <g style="stroke:#4A2C4F;stroke-width:1.8;stroke-linejoin:round">
+        <path d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(90 50 50)" d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#B4553F"></path>
+        <path transform="rotate(180 50 50)" d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(270 50 50)" d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#B4553F"></path>
+      </g>
+      <circle cx="50" cy="50" r="5.5" style="fill:#D4B483;stroke:#4A2C4F;stroke-width:1.8"></circle>
+    </symbol>
+
+    <symbol id="wm-a" viewBox="0 0 420 110">
+      <text x="22" y="70" textLength="350" lengthAdjust="spacing" style="font-family:Marcellus,serif;font-size:76px;fill:#4A2C4F">Filocalia</text>
+      <path d="M26 88 C90 100 160 78 230 85 C300 92 350 98 378 84 C390 78 387 67 379 70 C374 72 376 78 381 77" style="fill:none;stroke:#4A2C4F;stroke-width:2.4;stroke-linecap:round"></path>
+      <circle cx="26" cy="88" r="3" style="fill:#D4B483"></circle>
+    </symbol>
+
+    <symbol id="wm-b" viewBox="0 0 420 110">
+      <text x="34" y="74" textLength="370" lengthAdjust="spacing" style="font-family:Italiana,serif;font-size:72px;fill:#4A2C4F">Filocalia</text>
+      <path d="M40 24 C24 18 10 24 10 36 C10 46 22 48 25 41 C27 36 22 33 19 36" style="fill:none;stroke:#4A2C4F;stroke-width:2.4;stroke-linecap:round"></path>
+      <path d="M40 24 C100 14 300 14 404 26" style="fill:none;stroke:#4A2C4F;stroke-width:1.4;stroke-linecap:round"></path>
+      <path d="M404 21.5 L408 26 L404 30.5 L400 26 Z" style="fill:#D4B483"></path>
+    </symbol>
+
+    <symbol id="wm-c" viewBox="0 0 420 110">
+      <text x="10" y="68" textLength="400" lengthAdjust="spacing" style="font-family:'Gilda Display',serif;font-size:66px;fill:#4A2C4F">Filocalia</text>
+      <path d="M124 84 C150 98 190 98 210 86 C230 74 270 74 296 86" style="fill:none;stroke:#4A2C4F;stroke-width:2.2;stroke-linecap:round"></path>
+      <circle cx="210" cy="86" r="3.2" style="fill:#D4B483"></circle>
+    </symbol>
+  
+    <symbol id="sym-a-r" viewBox="0 0 100 100">
+      <g style="stroke:#F7EDE6;stroke-width:2;stroke-linejoin:round">
+        <path transform="rotate(-38 50 62)" d="M50 26 C59 37 60 50 50 62 C40 50 41 37 50 26 Z" style="fill:#B4553F"></path>
+        <path transform="rotate(38 50 62)" d="M50 26 C59 37 60 50 50 62 C40 50 41 37 50 26 Z" style="fill:#B4553F"></path>
+        <path d="M50 12 C62 27 63 45 50 62 C37 45 38 27 50 12 Z" style="fill:#E8B4B8"></path>
+        <path d="M50 24 C46 36 46 48 50 57" style="fill:none;stroke-width:1.4;stroke-linecap:round"></path>
+      </g>
+      <path d="M47.5 87 C31 86 16 74 11 55 C23 63 35 69 47.5 72 Z" style="fill:#F7EDE6"></path>
+      <path d="M52.5 87 C69 86 84 74 89 55 C77 63 65 69 52.5 72 Z" style="fill:#F7EDE6"></path>
+      <path d="M11 55 C4 47 4 37 11 32 C17 28 23 33 20 38 C18 41 14 39 15.5 36.5" style="fill:none;stroke:#F7EDE6;stroke-width:3;stroke-linecap:round"></path>
+      <path d="M89 55 C96 47 96 37 89 32 C83 28 77 33 80 38 C82 41 86 39 84.5 36.5" style="fill:none;stroke:#F7EDE6;stroke-width:3;stroke-linecap:round"></path>
+      <circle cx="50" cy="67" r="3" style="fill:#D4B483"></circle>
+    </symbol>
+
+    <symbol id="sym-b-r" viewBox="0 0 100 100">
+      <path d="M50 18 A30 30 0 0 0 20 48 L20 79 C20 89 13 92 9 88 C6 85 9 81 12.5 83" style="fill:none;stroke:#F7EDE6;stroke-width:3;stroke-linecap:round"></path>
+      <path d="M50 18 A30 30 0 0 1 80 48 L80 79 C80 89 87 92 91 88 C94 85 91 81 87.5 83" style="fill:none;stroke:#F7EDE6;stroke-width:3;stroke-linecap:round"></path>
+      <g style="stroke:#F7EDE6;stroke-width:1.8;stroke-linejoin:round">
+        <path transform="rotate(-50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(-25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+        <path transform="rotate(25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+        <path d="M50 74 C41 60 42 43 50 30 C58 43 59 60 50 74 Z" style="fill:#E8B4B8"></path>
+      </g>
+      <path d="M50 76 C42 76 36 80 32 87 C41 89 47 85 50 78 C53 85 59 89 68 87 C64 80 58 76 50 76 Z" style="fill:#F7EDE6"></path>
+      <circle cx="50" cy="74" r="3.4" style="fill:#D4B483;stroke:#F7EDE6;stroke-width:1.6"></circle>
+      <path d="M50 12.5 L54.5 18 L50 23.5 L45.5 18 Z" style="fill:#D4B483;stroke:#F7EDE6;stroke-width:1.6;stroke-linejoin:round"></path>
+    </symbol>
+
+    <symbol id="sym-c-r" viewBox="0 0 100 100">
+      <g  style="fill:none;stroke:#F7EDE6;stroke-width:3;stroke-linecap:round">
+        <path d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+        <path transform="rotate(90 50 50)" d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+        <path transform="rotate(180 50 50)" d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+        <path transform="rotate(270 50 50)" d="M50 50 C61 46 69 40 73 30 C75 24 71 19 66.5 21.5 C63 23.5 64.5 28 68 27.5"></path>
+      </g>
+      <g style="stroke:#F7EDE6;stroke-width:1.8;stroke-linejoin:round">
+        <path d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(90 50 50)" d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#B4553F"></path>
+        <path transform="rotate(180 50 50)" d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#E8B4B8"></path>
+        <path transform="rotate(270 50 50)" d="M50 50 C39 42 38 25 47 11 C58 21 61 38 50 50 Z" style="fill:#B4553F"></path>
+      </g>
+      <circle cx="50" cy="50" r="5.5" style="fill:#D4B483;stroke:#F7EDE6;stroke-width:1.8"></circle>
+    </symbol>
+
+    <symbol id="wm-a-r" viewBox="0 0 420 110">
+      <text x="22" y="70" textLength="350" lengthAdjust="spacing" style="font-family:Marcellus,serif;font-size:76px;fill:#F7EDE6">Filocalia</text>
+      <path d="M26 88 C90 100 160 78 230 85 C300 92 350 98 378 84 C390 78 387 67 379 70 C374 72 376 78 381 77" style="fill:none;stroke:#F7EDE6;stroke-width:2.4;stroke-linecap:round"></path>
+      <circle cx="26" cy="88" r="3" style="fill:#D4B483"></circle>
+    </symbol>
+
+    <symbol id="wm-b-r" viewBox="0 0 420 110">
+      <text x="34" y="74" textLength="370" lengthAdjust="spacing" style="font-family:Italiana,serif;font-size:72px;fill:#F7EDE6">Filocalia</text>
+      <path d="M40 24 C24 18 10 24 10 36 C10 46 22 48 25 41 C27 36 22 33 19 36" style="fill:none;stroke:#F7EDE6;stroke-width:2.4;stroke-linecap:round"></path>
+      <path d="M40 24 C100 14 300 14 404 26" style="fill:none;stroke:#F7EDE6;stroke-width:1.4;stroke-linecap:round"></path>
+      <path d="M404 21.5 L408 26 L404 30.5 L400 26 Z" style="fill:#D4B483"></path>
+    </symbol>
+
+    <symbol id="wm-c-r" viewBox="0 0 420 110">
+      <text x="10" y="68" textLength="400" lengthAdjust="spacing" style="font-family:'Gilda Display',serif;font-size:66px;fill:#F7EDE6">Filocalia</text>
+      <path d="M124 84 C150 98 190 98 210 86 C230 74 270 74 296 86" style="fill:none;stroke:#F7EDE6;stroke-width:2.2;stroke-linecap:round"></path>
+      <circle cx="210" cy="86" r="3.2" style="fill:#D4B483"></circle>
+    </symbol>
+  
+<symbol id="sym-b2" viewBox="0 0 100 100">
+  <path d="M28 74 A22 22 0 0 1 72 74" style="fill:none;stroke:#4A2C4F;stroke-width:1.3"></path>
+  <path d="M50 18 A30 30 0 0 0 20 48 L20 79 C20 89 13 92 9 88 C6 85 9 81 12.5 83" style="fill:none;stroke:#4A2C4F;stroke-width:3.4;stroke-linecap:round"></path>
+  <path d="M50 18 A30 30 0 0 1 80 48 L80 79 C80 89 87 92 91 88 C94 85 91 81 87.5 83" style="fill:none;stroke:#4A2C4F;stroke-width:3.4;stroke-linecap:round"></path>
+  <g style="stroke:#4A2C4F;stroke-width:1.8;stroke-linejoin:round">
+    <path transform="rotate(-50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+    <path transform="rotate(50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+    <path transform="rotate(-25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+    <path transform="rotate(25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+    <path d="M50 74 C41 60 42 43 50 30 C58 43 59 60 50 74 Z" style="fill:#E8B4B8"></path>
+    <path d="M50 38 C47.5 50 47.5 60 50 69" style="fill:none;stroke-width:1.2;stroke-linecap:round"></path>
+  </g>
+  <path d="M50 76 C42 76 36 80 32 87 C41 89 47 85 50 78 C53 85 59 89 68 87 C64 80 58 76 50 76 Z" style="fill:#4A2C4F"></path>
+  <circle cx="50" cy="74" r="3.4" style="fill:#D4B483;stroke:#4A2C4F;stroke-width:1.6"></circle>
+  <circle cx="20" cy="48" r="2" style="fill:#D4B483"></circle>
+  <circle cx="80" cy="48" r="2" style="fill:#D4B483"></circle>
+  <path d="M50 12.5 L54.5 18 L50 23.5 L45.5 18 Z" style="fill:#D4B483;stroke:#4A2C4F;stroke-width:1.6;stroke-linejoin:round"></path>
+</symbol>
+<symbol id="sym-b2s" viewBox="0 0 100 100">
+  <path d="M50 17 A32 32 0 0 0 18 49 L18 80 C18 89 11 91 7.5 86.5" style="fill:none;stroke:#4A2C4F;stroke-width:6.5;stroke-linecap:round"></path>
+  <path d="M50 17 A32 32 0 0 1 82 49 L82 80 C82 89 89 91 92.5 86.5" style="fill:none;stroke:#4A2C4F;stroke-width:6.5;stroke-linecap:round"></path>
+  <g style="stroke:#4A2C4F;stroke-width:2.6;stroke-linejoin:round">
+    <path transform="rotate(-36 50 82)" d="M50 82 C41 68 42 54 50 42 C58 54 59 68 50 82 Z" style="fill:#B4553F"></path>
+    <path transform="rotate(36 50 82)" d="M50 82 C41 68 42 54 50 42 C58 54 59 68 50 82 Z" style="fill:#B4553F"></path>
+    <path d="M50 82 C37 64 39 45 50 31 C61 45 63 64 50 82 Z" style="fill:#E8B4B8"></path>
+  </g>
+  <path d="M50 7 L57 15.5 L50 24 L43 15.5 Z" style="fill:#D4B483"></path>
+</symbol>
+<symbol id="wm-b2" viewBox="0 0 420 110">
+  <g transform="translate(-10.6 -21) scale(1.4)"><path d="M40 20 L40 76" style="fill:none;stroke:#4A2C4F;stroke-width:3.6;stroke-linecap:round"></path><path d="M40 76 C40 85 33 88 29 84 C26 81 29 77 32.5 79" style="fill:none;stroke:#4A2C4F;stroke-width:1.6;stroke-linecap:round"></path><path d="M40 20.5 C47 19 56 19 63 21.5" style="fill:none;stroke:#4A2C4F;stroke-width:1.2;stroke-linecap:round"></path><circle cx="63" cy="21.5" r="2" style="fill:#4A2C4F"></circle><path d="M40 47 L55 47" style="fill:none;stroke:#4A2C4F;stroke-width:2.4;stroke-linecap:round"></path><path d="M78 54 L78 77" style="fill:none;stroke:#4A2C4F;stroke-width:3.6;stroke-linecap:round"></path><path d="M78 76 C78 81 81 83 85 80" style="fill:none;stroke:#4A2C4F;stroke-width:1.6;stroke-linecap:round"></path><path d="M78 41.5 L81 45 L78 48.5 L75 45 Z" style="fill:#D4B483;stroke:#4A2C4F;stroke-width:.8;stroke-linejoin:round"></path><path d="M96 20 L96 77" style="fill:none;stroke:#4A2C4F;stroke-width:3.6;stroke-linecap:round"></path><path d="M96 76 C96 81 99 83 103 80" style="fill:none;stroke:#4A2C4F;stroke-width:1.6;stroke-linecap:round"></path><ellipse cx="121" cy="68" rx="11.5" ry="14" style="fill:none;stroke:#4A2C4F;stroke-width:1.2;stroke-linecap:round"></ellipse><path d="M121 54 A11.5 14 0 0 0 121 82 A8.5 14 0 0 1 121 54 Z" style="fill:#4A2C4F"></path><path d="M121 54 A11.5 14 0 0 1 121 82 A8.5 14 0 0 0 121 54 Z" style="fill:#4A2C4F"></path><path d="M163.5 58.5 A11.5 14 0 1 0 164 76.6" style="fill:none;stroke:#4A2C4F;stroke-width:1.2;stroke-linecap:round"></path><path d="M155 54 A11.5 14 0 0 0 155 82 A8.5 14 0 0 1 155 54 Z" style="fill:#4A2C4F"></path><circle cx="163.5" cy="58.5" r="2" style="fill:#4A2C4F"></circle><ellipse cx="187" cy="68" rx="11.5" ry="14" style="fill:none;stroke:#4A2C4F;stroke-width:1.2;stroke-linecap:round"></ellipse><path d="M187 54 A11.5 14 0 0 0 187 82 A8.5 14 0 0 1 187 54 Z" style="fill:#4A2C4F"></path><path d="M197 54 L197 77" style="fill:none;stroke:#4A2C4F;stroke-width:3.6;stroke-linecap:round"></path><path d="M197 76 C197 81 200 83 204 80" style="fill:none;stroke:#4A2C4F;stroke-width:1.6;stroke-linecap:round"></path><path d="M216 20 L216 77" style="fill:none;stroke:#4A2C4F;stroke-width:3.6;stroke-linecap:round"></path><path d="M216 76 C216 81 219 83 223 80" style="fill:none;stroke:#4A2C4F;stroke-width:1.6;stroke-linecap:round"></path><path d="M234 54 L234 77" style="fill:none;stroke:#4A2C4F;stroke-width:3.6;stroke-linecap:round"></path><path d="M234 76 C234 81 237 83 241 80" style="fill:none;stroke:#4A2C4F;stroke-width:1.6;stroke-linecap:round"></path><path d="M234 41.5 L237 45 L234 48.5 L231 45 Z" style="fill:#D4B483;stroke:#4A2C4F;stroke-width:.8;stroke-linejoin:round"></path><ellipse cx="258" cy="68" rx="11.5" ry="14" style="fill:none;stroke:#4A2C4F;stroke-width:1.2;stroke-linecap:round"></ellipse><path d="M258 54 A11.5 14 0 0 0 258 82 A8.5 14 0 0 1 258 54 Z" style="fill:#4A2C4F"></path><path d="M268 54 L268 76" style="fill:none;stroke:#4A2C4F;stroke-width:3.6;stroke-linecap:round"></path><path d="M268 76 C268 85 275 88 279 84 C282 81 279 77 275.5 79" style="fill:none;stroke:#4A2C4F;stroke-width:1.6;stroke-linecap:round"></path></g>
+</symbol>
+<symbol id="sym-b2-r" viewBox="0 0 100 100">
+  <path d="M28 74 A22 22 0 0 1 72 74" style="fill:none;stroke:#F7EDE6;stroke-width:1.3"></path>
+  <path d="M50 18 A30 30 0 0 0 20 48 L20 79 C20 89 13 92 9 88 C6 85 9 81 12.5 83" style="fill:none;stroke:#F7EDE6;stroke-width:3.4;stroke-linecap:round"></path>
+  <path d="M50 18 A30 30 0 0 1 80 48 L80 79 C80 89 87 92 91 88 C94 85 91 81 87.5 83" style="fill:none;stroke:#F7EDE6;stroke-width:3.4;stroke-linecap:round"></path>
+  <g style="stroke:#F7EDE6;stroke-width:1.8;stroke-linejoin:round">
+    <path transform="rotate(-50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+    <path transform="rotate(50 50 74)" d="M50 74 C43 64 44 51 50 42 C56 51 57 64 50 74 Z" style="fill:#E8B4B8"></path>
+    <path transform="rotate(-25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+    <path transform="rotate(25 50 74)" d="M50 74 C42 62 43 47 50 36 C57 47 58 62 50 74 Z" style="fill:#B4553F"></path>
+    <path d="M50 74 C41 60 42 43 50 30 C58 43 59 60 50 74 Z" style="fill:#E8B4B8"></path>
+    <path d="M50 38 C47.5 50 47.5 60 50 69" style="fill:none;stroke-width:1.2;stroke-linecap:round"></path>
+  </g>
+  <path d="M50 76 C42 76 36 80 32 87 C41 89 47 85 50 78 C53 85 59 89 68 87 C64 80 58 76 50 76 Z" style="fill:#F7EDE6"></path>
+  <circle cx="50" cy="74" r="3.4" style="fill:#D4B483;stroke:#F7EDE6;stroke-width:1.6"></circle>
+  <circle cx="20" cy="48" r="2" style="fill:#D4B483"></circle>
+  <circle cx="80" cy="48" r="2" style="fill:#D4B483"></circle>
+  <path d="M50 12.5 L54.5 18 L50 23.5 L45.5 18 Z" style="fill:#D4B483;stroke:#F7EDE6;stroke-width:1.6;stroke-linejoin:round"></path>
+</symbol>
+<symbol id="sym-b2s-r" viewBox="0 0 100 100">
+  <path d="M50 17 A32 32 0 0 0 18 49 L18 80 C18 89 11 91 7.5 86.5" style="fill:none;stroke:#F7EDE6;stroke-width:6.5;stroke-linecap:round"></path>
+  <path d="M50 17 A32 32 0 0 1 82 49 L82 80 C82 89 89 91 92.5 86.5" style="fill:none;stroke:#F7EDE6;stroke-width:6.5;stroke-linecap:round"></path>
+  <g style="stroke:#F7EDE6;stroke-width:2.6;stroke-linejoin:round">
+    <path transform="rotate(-36 50 82)" d="M50 82 C41 68 42 54 50 42 C58 54 59 68 50 82 Z" style="fill:#B4553F"></path>
+    <path transform="rotate(36 50 82)" d="M50 82 C41 68 42 54 50 42 C58 54 59 68 50 82 Z" style="fill:#B4553F"></path>
+    <path d="M50 82 C37 64 39 45 50 31 C61 45 63 64 50 82 Z" style="fill:#E8B4B8"></path>
+  </g>
+  <path d="M50 7 L57 15.5 L50 24 L43 15.5 Z" style="fill:#D4B483"></path>
+</symbol>
+<symbol id="wm-b2-r" viewBox="0 0 420 110">
+  <g transform="translate(-10.6 -21) scale(1.4)"><path d="M40 20 L40 76" style="fill:none;stroke:#F7EDE6;stroke-width:3.6;stroke-linecap:round"></path><path d="M40 76 C40 85 33 88 29 84 C26 81 29 77 32.5 79" style="fill:none;stroke:#F7EDE6;stroke-width:1.6;stroke-linecap:round"></path><path d="M40 20.5 C47 19 56 19 63 21.5" style="fill:none;stroke:#F7EDE6;stroke-width:1.2;stroke-linecap:round"></path><circle cx="63" cy="21.5" r="2" style="fill:#F7EDE6"></circle><path d="M40 47 L55 47" style="fill:none;stroke:#F7EDE6;stroke-width:2.4;stroke-linecap:round"></path><path d="M78 54 L78 77" style="fill:none;stroke:#F7EDE6;stroke-width:3.6;stroke-linecap:round"></path><path d="M78 76 C78 81 81 83 85 80" style="fill:none;stroke:#F7EDE6;stroke-width:1.6;stroke-linecap:round"></path><path d="M78 41.5 L81 45 L78 48.5 L75 45 Z" style="fill:#D4B483;stroke:#F7EDE6;stroke-width:.8;stroke-linejoin:round"></path><path d="M96 20 L96 77" style="fill:none;stroke:#F7EDE6;stroke-width:3.6;stroke-linecap:round"></path><path d="M96 76 C96 81 99 83 103 80" style="fill:none;stroke:#F7EDE6;stroke-width:1.6;stroke-linecap:round"></path><ellipse cx="121" cy="68" rx="11.5" ry="14" style="fill:none;stroke:#F7EDE6;stroke-width:1.2;stroke-linecap:round"></ellipse><path d="M121 54 A11.5 14 0 0 0 121 82 A8.5 14 0 0 1 121 54 Z" style="fill:#F7EDE6"></path><path d="M121 54 A11.5 14 0 0 1 121 82 A8.5 14 0 0 0 121 54 Z" style="fill:#F7EDE6"></path><path d="M163.5 58.5 A11.5 14 0 1 0 164 76.6" style="fill:none;stroke:#F7EDE6;stroke-width:1.2;stroke-linecap:round"></path><path d="M155 54 A11.5 14 0 0 0 155 82 A8.5 14 0 0 1 155 54 Z" style="fill:#F7EDE6"></path><circle cx="163.5" cy="58.5" r="2" style="fill:#F7EDE6"></circle><ellipse cx="187" cy="68" rx="11.5" ry="14" style="fill:none;stroke:#F7EDE6;stroke-width:1.2;stroke-linecap:round"></ellipse><path d="M187 54 A11.5 14 0 0 0 187 82 A8.5 14 0 0 1 187 54 Z" style="fill:#F7EDE6"></path><path d="M197 54 L197 77" style="fill:none;stroke:#F7EDE6;stroke-width:3.6;stroke-linecap:round"></path><path d="M197 76 C197 81 200 83 204 80" style="fill:none;stroke:#F7EDE6;stroke-width:1.6;stroke-linecap:round"></path><path d="M216 20 L216 77" style="fill:none;stroke:#F7EDE6;stroke-width:3.6;stroke-linecap:round"></path><path d="M216 76 C216 81 219 83 223 80" style="fill:none;stroke:#F7EDE6;stroke-width:1.6;stroke-linecap:round"></path><path d="M234 54 L234 77" style="fill:none;stroke:#F7EDE6;stroke-width:3.6;stroke-linecap:round"></path><path d="M234 76 C234 81 237 83 241 80" style="fill:none;stroke:#F7EDE6;stroke-width:1.6;stroke-linecap:round"></path><path d="M234 41.5 L237 45 L234 48.5 L231 45 Z" style="fill:#D4B483;stroke:#F7EDE6;stroke-width:.8;stroke-linejoin:round"></path><ellipse cx="258" cy="68" rx="11.5" ry="14" style="fill:none;stroke:#F7EDE6;stroke-width:1.2;stroke-linecap:round"></ellipse><path d="M258 54 A11.5 14 0 0 0 258 82 A8.5 14 0 0 1 258 54 Z" style="fill:#F7EDE6"></path><path d="M268 54 L268 76" style="fill:none;stroke:#F7EDE6;stroke-width:3.6;stroke-linecap:round"></path><path d="M268 76 C268 85 275 88 279 84 C282 81 279 77 275.5 79" style="fill:none;stroke:#F7EDE6;stroke-width:1.6;stroke-linecap:round"></path></g>
+</symbol>
+<symbol id="wm-3a" viewBox="0 0 420 110"><text x="210" y="76" style="text-anchor:middle;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:84px;letter-spacing:1px;fill:#4A2C4F">Filocalia</text></symbol>
+<symbol id="wm-3a-r" viewBox="0 0 420 110"><text x="210" y="76" style="text-anchor:middle;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:84px;letter-spacing:1px;fill:#F7EDE6">Filocalia</text></symbol>
+<symbol id="wm-3b" viewBox="0 0 420 110"><text x="210" y="74" style="text-anchor:middle;font-family:Elsie,serif;font-weight:400;font-size:70px;letter-spacing:1px;fill:#4A2C4F">Filocalia</text></symbol>
+<symbol id="wm-3b-r" viewBox="0 0 420 110"><text x="210" y="74" style="text-anchor:middle;font-family:Elsie,serif;font-weight:400;font-size:70px;letter-spacing:1px;fill:#F7EDE6">Filocalia</text></symbol>
+<symbol id="wm-3c" viewBox="0 0 420 110"><text x="210" y="72" style="text-anchor:middle;font-family:Cinzel,serif;font-weight:500;font-size:50px;letter-spacing:9px;fill:#4A2C4F">FILOCALIA</text></symbol>
+<symbol id="wm-3c-r" viewBox="0 0 420 110"><text x="210" y="72" style="text-anchor:middle;font-family:Cinzel,serif;font-weight:500;font-size:50px;letter-spacing:9px;fill:#F7EDE6">FILOCALIA</text></symbol>
+<symbol id="wm-4a" viewBox="0 0 420 110"><text x="210" y="73" style="text-anchor:middle;font-family:Elsie,serif;font-weight:400;font-size:52px;letter-spacing:7px;fill:#4A2C4F">FILOCALIA</text></symbol>
+<symbol id="wm-4a-r" viewBox="0 0 420 110"><text x="210" y="73" style="text-anchor:middle;font-family:Elsie,serif;font-weight:400;font-size:52px;letter-spacing:7px;fill:#F7EDE6">FILOCALIA</text></symbol>
+<symbol id="wm-4b" viewBox="0 0 420 110"><text x="210" y="72" style="text-anchor:middle;font-family:'Marcellus SC',serif;font-weight:400;font-size:50px;letter-spacing:6px;fill:#4A2C4F">Filocalia</text></symbol>
+<symbol id="wm-4b-r" viewBox="0 0 420 110"><text x="210" y="72" style="text-anchor:middle;font-family:'Marcellus SC',serif;font-weight:400;font-size:50px;letter-spacing:6px;fill:#F7EDE6">Filocalia</text></symbol>
+<symbol id="wm-4c" viewBox="0 0 420 110"><text x="210" y="71" style="text-anchor:middle;font-family:'Cinzel Decorative',serif;font-weight:400;font-size:46px;letter-spacing:6px;fill:#4A2C4F;stroke:#4A2C4F;stroke-width:.9;stroke-linejoin:round">Filocalia</text></symbol>
+<symbol id="wm-4c-r" viewBox="0 0 420 110"><text x="210" y="71" style="text-anchor:middle;font-family:'Cinzel Decorative',serif;font-weight:400;font-size:46px;letter-spacing:6px;fill:#F7EDE6;stroke:#F7EDE6;stroke-width:.9;stroke-linejoin:round">Filocalia</text></symbol>
+<symbol id="wm-f" viewBox="80 30 260 56"><path d="M93.91 52.80L93.91 62.07Q93.91 64.23 93.97 65.84Q94.04 67.46 94.13 68.62Q94.21 69.79 94.35 70.58Q94.49 71.37 94.65 71.90L94.65 71.90L94.65 72L88.55 72L88.55 71.90Q88.70 71.37 88.84 70.58Q88.98 69.79 89.08 68.62Q89.19 67.46 89.24 65.84Q89.29 64.23 89.29 62.07L89.29 62.07L89.29 45.54Q89.29 43.38 89.24 41.77Q89.19 40.16 89.08 38.98Q88.98 37.80 88.84 37.01Q88.70 36.22 88.55 35.69L88.55 35.69L88.55 35.59Q90.66 35.59 92.82 35.58Q94.98 35.56 97.01 35.55Q99.04 35.54 100.87 35.50Q102.69 35.46 104.17 35.42Q105.64 35.39 106.66 35.32Q107.67 35.26 108.10 35.18L108.10 35.18L106.86 38.56Q106.02 38.33 104.90 38.15L104.90 38.15Q103.94 38.00 102.55 37.86Q101.17 37.72 99.37 37.72L99.37 37.72Q98.76 37.72 97.84 37.76Q96.93 37.80 96.04 37.85L96.04 37.85Q95.03 37.90 93.91 37.95L93.91 37.95L93.91 50.77Q96.52 50.75 98.71 50.62Q100.89 50.49 102.47 50.37L102.47 50.37Q104.29 50.21 105.77 50.01L105.77 50.01L105.00 53.69Q103.10 53.46 101.15 53.26L101.15 53.26Q99.47 53.08 97.54 52.94Q95.61 52.80 93.91 52.80L93.91 52.80ZM118.16 61.54L118.16 55.14Q118.16 52.86 118.10 51.17Q118.05 49.48 117.96 48.25Q117.88 47.02 117.74 46.18Q117.60 45.34 117.42 44.81L117.42 44.81L117.42 44.71L123.31 44.71L123.31 44.81Q123.13 45.34 122.99 46.18Q122.85 47.02 122.76 48.25Q122.67 49.48 122.62 51.17Q122.57 52.86 122.57 55.14L122.57 55.14L122.57 61.54Q122.57 63.82 122.62 65.53Q122.67 67.23 122.76 68.46Q122.85 69.69 122.99 70.53Q123.13 71.37 123.31 71.90L123.31 71.90L123.31 72L117.42 72L117.42 71.90Q117.60 71.37 117.74 70.53Q117.88 69.69 117.96 68.46Q118.05 67.23 118.10 65.53Q118.16 63.82 118.16 61.54L118.16 61.54ZM140.52 55.14L140.52 70.02Q142.88 70.02 144.88 69.83Q146.87 69.64 148.37 69.41L148.37 69.41Q150.12 69.13 151.54 68.78L151.54 68.78L150.96 72.15Q150.60 72.13 149.75 72.09Q148.90 72.05 147.96 72.04Q147.02 72.03 146.21 72.01Q145.40 72 145.09 72L145.09 72L135.37 72L135.37 71.90Q135.55 71.37 135.69 70.53Q135.83 69.69 135.91 68.46Q136.00 67.23 136.05 65.53Q136.10 63.82 136.10 61.54L136.10 61.54L136.10 55.14Q136.10 52.86 136.05 51.17Q136.00 49.48 135.91 48.25Q135.83 47.02 135.69 46.18Q135.55 45.34 135.37 44.81L135.37 44.81L135.37 44.71L141.23 44.71L141.23 44.81Q141.06 45.34 140.93 46.18Q140.80 47.02 140.71 48.25Q140.62 49.48 140.57 51.17Q140.52 52.86 140.52 55.14L140.52 55.14ZM159.46 58.26L159.46 58.26Q159.46 55.27 160.59 52.70Q161.72 50.14 163.68 48.25Q165.63 46.36 168.30 45.29Q170.96 44.22 174.01 44.22L174.01 44.22Q177.01 44.22 179.66 45.23Q182.31 46.23 184.28 48.08Q186.25 49.94 187.39 52.58Q188.53 55.22 188.53 58.49L188.53 58.49Q188.53 61.21 187.57 63.74Q186.60 66.26 184.75 68.20Q182.90 70.15 180.18 71.30Q177.46 72.46 173.96 72.46L173.96 72.46Q170.99 72.46 168.35 71.47Q165.71 70.48 163.73 68.64Q161.75 66.79 160.60 64.17Q159.46 61.54 159.46 58.26ZM174.59 70.65L174.59 70.65Q176.52 70.65 178.15 69.89Q179.77 69.13 180.96 67.71Q182.14 66.29 182.78 64.24Q183.43 62.20 183.43 59.63L183.43 59.63Q183.43 56.71 182.81 54.23Q182.19 51.74 180.93 49.92Q179.67 48.11 177.79 47.08Q175.92 46.05 173.40 46.05L173.40 46.05Q171.47 46.05 169.85 46.79Q168.22 47.52 167.04 48.92Q165.86 50.32 165.20 52.35Q164.54 54.38 164.54 56.97L164.54 56.97Q164.54 59.86 165.19 62.36Q165.83 64.87 167.09 66.71Q168.35 68.55 170.23 69.60Q172.11 70.65 174.59 70.65ZM221.34 66.19L221.64 66.34L219.66 71.06Q218.92 71.39 218.00 71.66Q217.07 71.92 216.08 72.10Q215.09 72.28 214.06 72.37Q213.03 72.46 212.12 72.46L212.12 72.46Q208.92 72.46 206.19 71.52Q203.46 70.58 201.48 68.76Q199.50 66.95 198.38 64.31Q197.27 61.67 197.27 58.26L197.27 58.26Q197.27 55.27 198.43 52.70Q199.60 50.14 201.66 48.25Q203.72 46.36 206.52 45.29Q209.33 44.22 212.60 44.22L212.60 44.22Q213.34 44.22 214.16 44.29Q214.99 44.35 215.80 44.48Q216.61 44.60 217.38 44.77Q218.14 44.93 218.80 45.11L218.80 45.11L220.70 49.68L220.40 49.86Q219.71 49.02 218.76 48.31Q217.81 47.60 216.68 47.10Q215.55 46.61 214.30 46.33Q213.06 46.05 211.76 46.05L211.76 46.05Q209.66 46.05 207.92 46.79Q206.18 47.52 204.95 48.93Q203.72 50.34 203.03 52.37Q202.34 54.40 202.34 56.97L202.34 56.97Q202.34 59.86 203.00 62.36Q203.67 64.87 204.99 66.71Q206.31 68.55 208.29 69.60Q210.27 70.65 212.91 70.65L212.91 70.65Q214.18 70.65 215.41 70.34Q216.64 70.02 217.74 69.44Q218.85 68.85 219.76 68.03Q220.68 67.20 221.34 66.19L221.34 66.19ZM248.83 65.45L247.84 63.42Q247.16 63.42 246.13 63.42Q245.10 63.42 243.88 63.42Q242.66 63.42 241.37 63.42Q240.07 63.42 238.91 63.43Q237.74 63.44 236.77 63.46Q235.81 63.47 235.27 63.47L235.27 63.47L234.33 65.45Q233.73 66.67 233.29 67.57Q232.86 68.47 232.58 69.16Q232.30 69.84 232.18 70.34Q232.05 70.83 232.05 71.26L232.05 71.26Q232.05 71.54 232.08 71.68Q232.10 71.82 232.15 71.90L232.15 71.90L232.15 72L227.68 72L227.68 71.90Q227.86 71.72 228.24 71.12Q228.62 70.53 229.12 69.66Q229.61 68.80 230.18 67.71Q230.75 66.62 231.31 65.45L231.31 65.45L241.67 44.07L243.58 44.07L253.73 65.45Q254.32 66.67 254.91 67.79Q255.51 68.90 256.02 69.78Q256.53 70.65 256.91 71.23Q257.29 71.80 257.42 71.90L257.42 71.90L257.42 72L250.92 72Q250.97 71.80 250.97 71.63Q250.97 71.47 250.97 71.26L250.97 71.26Q250.97 70.71 250.72 69.92Q250.48 69.13 250.14 68.31Q249.80 67.48 249.43 66.72Q249.06 65.96 248.83 65.45L248.83 65.45ZM241.67 50.16L236.26 61.44L237.81 61.44Q238.88 61.44 240.09 61.42Q241.29 61.41 242.51 61.41Q243.73 61.41 244.87 61.40Q246.01 61.39 246.93 61.39L246.93 61.39L241.67 50.16ZM270.64 55.14L270.64 70.02Q273.00 70.02 275.00 69.83Q276.99 69.64 278.49 69.41L278.49 69.41Q280.24 69.13 281.66 68.78L281.66 68.78L281.08 72.15Q280.72 72.13 279.87 72.09Q279.02 72.05 278.08 72.04Q277.14 72.03 276.33 72.01Q275.52 72 275.21 72L275.21 72L265.49 72L265.49 71.90Q265.67 71.37 265.80 70.53Q265.94 69.69 266.03 68.46Q266.12 67.23 266.17 65.53Q266.22 63.82 266.22 61.54L266.22 61.54L266.22 55.14Q266.22 52.86 266.17 51.17Q266.12 49.48 266.03 48.25Q265.94 47.02 265.80 46.18Q265.67 45.34 265.49 44.81L265.49 44.81L265.49 44.71L271.35 44.71L271.35 44.81Q271.17 45.34 271.05 46.18Q270.92 47.02 270.83 48.25Q270.74 49.48 270.69 51.17Q270.64 52.86 270.64 55.14L270.64 55.14ZM291.97 61.54L291.97 55.14Q291.97 52.86 291.92 51.17Q291.87 49.48 291.78 48.25Q291.69 47.02 291.55 46.18Q291.41 45.34 291.23 44.81L291.23 44.81L291.23 44.71L297.12 44.71L297.12 44.81Q296.94 45.34 296.80 46.18Q296.67 47.02 296.58 48.25Q296.49 49.48 296.44 51.17Q296.39 52.86 296.39 55.14L296.39 55.14L296.39 61.54Q296.39 63.82 296.44 65.53Q296.49 67.23 296.58 68.46Q296.67 69.69 296.80 70.53Q296.94 71.37 297.12 71.90L297.12 71.90L297.12 72L291.23 72L291.23 71.90Q291.41 71.37 291.55 70.53Q291.69 69.69 291.78 68.46Q291.87 67.23 291.92 65.53Q291.97 63.82 291.97 61.54L291.97 61.54ZM326.75 65.45L325.76 63.42Q325.08 63.42 324.05 63.42Q323.02 63.42 321.80 63.42Q320.58 63.42 319.29 63.42Q317.99 63.42 316.82 63.43Q315.66 63.44 314.69 63.46Q313.73 63.47 313.19 63.47L313.19 63.47L312.25 65.45Q311.64 66.67 311.21 67.57Q310.78 68.47 310.50 69.16Q310.22 69.84 310.09 70.34Q309.97 70.83 309.97 71.26L309.97 71.26Q309.97 71.54 309.99 71.68Q310.02 71.82 310.07 71.90L310.07 71.90L310.07 72L305.60 72L305.60 71.90Q305.78 71.72 306.16 71.12Q306.54 70.53 307.04 69.66Q307.53 68.80 308.10 67.71Q308.67 66.62 309.23 65.45L309.23 65.45L319.59 44.07L321.50 44.07L331.65 65.45Q332.24 66.67 332.83 67.79Q333.43 68.90 333.94 69.78Q334.44 70.65 334.83 71.23Q335.21 71.80 335.33 71.90L335.33 71.90L335.33 72L328.83 72Q328.88 71.80 328.88 71.63Q328.88 71.47 328.88 71.26L328.88 71.26Q328.88 70.71 328.64 69.92Q328.40 69.13 328.06 68.31Q327.72 67.48 327.35 66.72Q326.98 65.96 326.75 65.45L326.75 65.45ZM319.59 50.16L314.18 61.44L315.73 61.44Q316.80 61.44 318.00 61.42Q319.21 61.41 320.43 61.41Q321.65 61.41 322.79 61.40Q323.93 61.39 324.85 61.39L324.85 61.39L319.59 50.16Z" style="fill:#4A2C4F;stroke:#4A2C4F;stroke-width:.5;stroke-linejoin:round"></path></symbol>
+<symbol id="wm-f-r" viewBox="80 30 260 56"><path d="M93.91 52.80L93.91 62.07Q93.91 64.23 93.97 65.84Q94.04 67.46 94.13 68.62Q94.21 69.79 94.35 70.58Q94.49 71.37 94.65 71.90L94.65 71.90L94.65 72L88.55 72L88.55 71.90Q88.70 71.37 88.84 70.58Q88.98 69.79 89.08 68.62Q89.19 67.46 89.24 65.84Q89.29 64.23 89.29 62.07L89.29 62.07L89.29 45.54Q89.29 43.38 89.24 41.77Q89.19 40.16 89.08 38.98Q88.98 37.80 88.84 37.01Q88.70 36.22 88.55 35.69L88.55 35.69L88.55 35.59Q90.66 35.59 92.82 35.58Q94.98 35.56 97.01 35.55Q99.04 35.54 100.87 35.50Q102.69 35.46 104.17 35.42Q105.64 35.39 106.66 35.32Q107.67 35.26 108.10 35.18L108.10 35.18L106.86 38.56Q106.02 38.33 104.90 38.15L104.90 38.15Q103.94 38.00 102.55 37.86Q101.17 37.72 99.37 37.72L99.37 37.72Q98.76 37.72 97.84 37.76Q96.93 37.80 96.04 37.85L96.04 37.85Q95.03 37.90 93.91 37.95L93.91 37.95L93.91 50.77Q96.52 50.75 98.71 50.62Q100.89 50.49 102.47 50.37L102.47 50.37Q104.29 50.21 105.77 50.01L105.77 50.01L105.00 53.69Q103.10 53.46 101.15 53.26L101.15 53.26Q99.47 53.08 97.54 52.94Q95.61 52.80 93.91 52.80L93.91 52.80ZM118.16 61.54L118.16 55.14Q118.16 52.86 118.10 51.17Q118.05 49.48 117.96 48.25Q117.88 47.02 117.74 46.18Q117.60 45.34 117.42 44.81L117.42 44.81L117.42 44.71L123.31 44.71L123.31 44.81Q123.13 45.34 122.99 46.18Q122.85 47.02 122.76 48.25Q122.67 49.48 122.62 51.17Q122.57 52.86 122.57 55.14L122.57 55.14L122.57 61.54Q122.57 63.82 122.62 65.53Q122.67 67.23 122.76 68.46Q122.85 69.69 122.99 70.53Q123.13 71.37 123.31 71.90L123.31 71.90L123.31 72L117.42 72L117.42 71.90Q117.60 71.37 117.74 70.53Q117.88 69.69 117.96 68.46Q118.05 67.23 118.10 65.53Q118.16 63.82 118.16 61.54L118.16 61.54ZM140.52 55.14L140.52 70.02Q142.88 70.02 144.88 69.83Q146.87 69.64 148.37 69.41L148.37 69.41Q150.12 69.13 151.54 68.78L151.54 68.78L150.96 72.15Q150.60 72.13 149.75 72.09Q148.90 72.05 147.96 72.04Q147.02 72.03 146.21 72.01Q145.40 72 145.09 72L145.09 72L135.37 72L135.37 71.90Q135.55 71.37 135.69 70.53Q135.83 69.69 135.91 68.46Q136.00 67.23 136.05 65.53Q136.10 63.82 136.10 61.54L136.10 61.54L136.10 55.14Q136.10 52.86 136.05 51.17Q136.00 49.48 135.91 48.25Q135.83 47.02 135.69 46.18Q135.55 45.34 135.37 44.81L135.37 44.81L135.37 44.71L141.23 44.71L141.23 44.81Q141.06 45.34 140.93 46.18Q140.80 47.02 140.71 48.25Q140.62 49.48 140.57 51.17Q140.52 52.86 140.52 55.14L140.52 55.14ZM159.46 58.26L159.46 58.26Q159.46 55.27 160.59 52.70Q161.72 50.14 163.68 48.25Q165.63 46.36 168.30 45.29Q170.96 44.22 174.01 44.22L174.01 44.22Q177.01 44.22 179.66 45.23Q182.31 46.23 184.28 48.08Q186.25 49.94 187.39 52.58Q188.53 55.22 188.53 58.49L188.53 58.49Q188.53 61.21 187.57 63.74Q186.60 66.26 184.75 68.20Q182.90 70.15 180.18 71.30Q177.46 72.46 173.96 72.46L173.96 72.46Q170.99 72.46 168.35 71.47Q165.71 70.48 163.73 68.64Q161.75 66.79 160.60 64.17Q159.46 61.54 159.46 58.26ZM174.59 70.65L174.59 70.65Q176.52 70.65 178.15 69.89Q179.77 69.13 180.96 67.71Q182.14 66.29 182.78 64.24Q183.43 62.20 183.43 59.63L183.43 59.63Q183.43 56.71 182.81 54.23Q182.19 51.74 180.93 49.92Q179.67 48.11 177.79 47.08Q175.92 46.05 173.40 46.05L173.40 46.05Q171.47 46.05 169.85 46.79Q168.22 47.52 167.04 48.92Q165.86 50.32 165.20 52.35Q164.54 54.38 164.54 56.97L164.54 56.97Q164.54 59.86 165.19 62.36Q165.83 64.87 167.09 66.71Q168.35 68.55 170.23 69.60Q172.11 70.65 174.59 70.65ZM221.34 66.19L221.64 66.34L219.66 71.06Q218.92 71.39 218.00 71.66Q217.07 71.92 216.08 72.10Q215.09 72.28 214.06 72.37Q213.03 72.46 212.12 72.46L212.12 72.46Q208.92 72.46 206.19 71.52Q203.46 70.58 201.48 68.76Q199.50 66.95 198.38 64.31Q197.27 61.67 197.27 58.26L197.27 58.26Q197.27 55.27 198.43 52.70Q199.60 50.14 201.66 48.25Q203.72 46.36 206.52 45.29Q209.33 44.22 212.60 44.22L212.60 44.22Q213.34 44.22 214.16 44.29Q214.99 44.35 215.80 44.48Q216.61 44.60 217.38 44.77Q218.14 44.93 218.80 45.11L218.80 45.11L220.70 49.68L220.40 49.86Q219.71 49.02 218.76 48.31Q217.81 47.60 216.68 47.10Q215.55 46.61 214.30 46.33Q213.06 46.05 211.76 46.05L211.76 46.05Q209.66 46.05 207.92 46.79Q206.18 47.52 204.95 48.93Q203.72 50.34 203.03 52.37Q202.34 54.40 202.34 56.97L202.34 56.97Q202.34 59.86 203.00 62.36Q203.67 64.87 204.99 66.71Q206.31 68.55 208.29 69.60Q210.27 70.65 212.91 70.65L212.91 70.65Q214.18 70.65 215.41 70.34Q216.64 70.02 217.74 69.44Q218.85 68.85 219.76 68.03Q220.68 67.20 221.34 66.19L221.34 66.19ZM248.83 65.45L247.84 63.42Q247.16 63.42 246.13 63.42Q245.10 63.42 243.88 63.42Q242.66 63.42 241.37 63.42Q240.07 63.42 238.91 63.43Q237.74 63.44 236.77 63.46Q235.81 63.47 235.27 63.47L235.27 63.47L234.33 65.45Q233.73 66.67 233.29 67.57Q232.86 68.47 232.58 69.16Q232.30 69.84 232.18 70.34Q232.05 70.83 232.05 71.26L232.05 71.26Q232.05 71.54 232.08 71.68Q232.10 71.82 232.15 71.90L232.15 71.90L232.15 72L227.68 72L227.68 71.90Q227.86 71.72 228.24 71.12Q228.62 70.53 229.12 69.66Q229.61 68.80 230.18 67.71Q230.75 66.62 231.31 65.45L231.31 65.45L241.67 44.07L243.58 44.07L253.73 65.45Q254.32 66.67 254.91 67.79Q255.51 68.90 256.02 69.78Q256.53 70.65 256.91 71.23Q257.29 71.80 257.42 71.90L257.42 71.90L257.42 72L250.92 72Q250.97 71.80 250.97 71.63Q250.97 71.47 250.97 71.26L250.97 71.26Q250.97 70.71 250.72 69.92Q250.48 69.13 250.14 68.31Q249.80 67.48 249.43 66.72Q249.06 65.96 248.83 65.45L248.83 65.45ZM241.67 50.16L236.26 61.44L237.81 61.44Q238.88 61.44 240.09 61.42Q241.29 61.41 242.51 61.41Q243.73 61.41 244.87 61.40Q246.01 61.39 246.93 61.39L246.93 61.39L241.67 50.16ZM270.64 55.14L270.64 70.02Q273.00 70.02 275.00 69.83Q276.99 69.64 278.49 69.41L278.49 69.41Q280.24 69.13 281.66 68.78L281.66 68.78L281.08 72.15Q280.72 72.13 279.87 72.09Q279.02 72.05 278.08 72.04Q277.14 72.03 276.33 72.01Q275.52 72 275.21 72L275.21 72L265.49 72L265.49 71.90Q265.67 71.37 265.80 70.53Q265.94 69.69 266.03 68.46Q266.12 67.23 266.17 65.53Q266.22 63.82 266.22 61.54L266.22 61.54L266.22 55.14Q266.22 52.86 266.17 51.17Q266.12 49.48 266.03 48.25Q265.94 47.02 265.80 46.18Q265.67 45.34 265.49 44.81L265.49 44.81L265.49 44.71L271.35 44.71L271.35 44.81Q271.17 45.34 271.05 46.18Q270.92 47.02 270.83 48.25Q270.74 49.48 270.69 51.17Q270.64 52.86 270.64 55.14L270.64 55.14ZM291.97 61.54L291.97 55.14Q291.97 52.86 291.92 51.17Q291.87 49.48 291.78 48.25Q291.69 47.02 291.55 46.18Q291.41 45.34 291.23 44.81L291.23 44.81L291.23 44.71L297.12 44.71L297.12 44.81Q296.94 45.34 296.80 46.18Q296.67 47.02 296.58 48.25Q296.49 49.48 296.44 51.17Q296.39 52.86 296.39 55.14L296.39 55.14L296.39 61.54Q296.39 63.82 296.44 65.53Q296.49 67.23 296.58 68.46Q296.67 69.69 296.80 70.53Q296.94 71.37 297.12 71.90L297.12 71.90L297.12 72L291.23 72L291.23 71.90Q291.41 71.37 291.55 70.53Q291.69 69.69 291.78 68.46Q291.87 67.23 291.92 65.53Q291.97 63.82 291.97 61.54L291.97 61.54ZM326.75 65.45L325.76 63.42Q325.08 63.42 324.05 63.42Q323.02 63.42 321.80 63.42Q320.58 63.42 319.29 63.42Q317.99 63.42 316.82 63.43Q315.66 63.44 314.69 63.46Q313.73 63.47 313.19 63.47L313.19 63.47L312.25 65.45Q311.64 66.67 311.21 67.57Q310.78 68.47 310.50 69.16Q310.22 69.84 310.09 70.34Q309.97 70.83 309.97 71.26L309.97 71.26Q309.97 71.54 309.99 71.68Q310.02 71.82 310.07 71.90L310.07 71.90L310.07 72L305.60 72L305.60 71.90Q305.78 71.72 306.16 71.12Q306.54 70.53 307.04 69.66Q307.53 68.80 308.10 67.71Q308.67 66.62 309.23 65.45L309.23 65.45L319.59 44.07L321.50 44.07L331.65 65.45Q332.24 66.67 332.83 67.79Q333.43 68.90 333.94 69.78Q334.44 70.65 334.83 71.23Q335.21 71.80 335.33 71.90L335.33 71.90L335.33 72L328.83 72Q328.88 71.80 328.88 71.63Q328.88 71.47 328.88 71.26L328.88 71.26Q328.88 70.71 328.64 69.92Q328.40 69.13 328.06 68.31Q327.72 67.48 327.35 66.72Q326.98 65.96 326.75 65.45L326.75 65.45ZM319.59 50.16L314.18 61.44L315.73 61.44Q316.80 61.44 318.00 61.42Q319.21 61.41 320.43 61.41Q321.65 61.41 322.79 61.40Q323.93 61.39 324.85 61.39L324.85 61.39L319.59 50.16Z" style="fill:#F7EDE6;stroke:#F7EDE6;stroke-width:.5;stroke-linejoin:round"></path></symbol>
+</defs>
+</svg>
+
+<section id="turn-5" style="padding:64px 64px 48px;display:flex;flex-direction:column;gap:32px;border-bottom:1px solid rgba(74,44,79,.18)">
+  <header style="display:flex;flex-direction:column;gap:10px;max-width:900px">
+    <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B4553F">Filocalia · Round 5 · Final system · Arch <a href="#2a">2a</a> + lettering <a href="#4b">4b</a></div>
+    <h1 style="margin:0;font-weight:400;font-size:48px;line-height:1.05">Filocalia identity</h1>
+    <p style="margin:0;font-size:17px;line-height:1.5;text-wrap:pretty;max-width:760px">Flared small-cap lettering, outlined to vector, tracking tightened slightly and weight nudged up to sit with the arch line. Production files are in the export folder. Use the primary symbol at 48px and above; the simplified cut at 32px and below.</p>
+  </header>
+  <div id="5a" data-screen-label="5a Lockups" style="display:flex;flex-direction:column;gap:16px;max-width:1320px">
+    <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">5a</span><h2 style="margin:0;font-weight:400;font-size:28px">Lockups</h2></div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Horizontal</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:16px">
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:260px;display:flex;align-items:center;justify-content:center;gap:22px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 260 56" width="248" height="53"><use href="#wm-f"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:260px;display:flex;align-items:center;justify-content:center;gap:22px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 260 56" width="248" height="53"><use href="#wm-f-r"></use></svg></div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:8px">Stacked</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="200" height="200"><use href="#sym-b2"></use></svg><svg viewBox="0 0 260 56" width="174" height="37"><use href="#wm-f"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="200" height="200"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 260 56" width="174" height="37"><use href="#wm-f-r"></use></svg></div>
+      <div style="background:#E8B4B8;border-radius:6px;height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="200" height="200"><use href="#sym-b2"></use></svg><svg viewBox="0 0 260 56" width="174" height="37"><use href="#wm-f"></use></svg></div>
+    </div>
+  </div>
+  <div id="5b" data-screen-label="5b Icon and small sizes" style="display:flex;flex-direction:column;gap:16px;max-width:1320px;margin-top:16px">
+    <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">5b</span><h2 style="margin:0;font-weight:400;font-size:28px">App icon, avatar & small sizes</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px">
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:28px;display:flex;align-items:center;justify-content:space-around;gap:20px;flex-wrap:wrap">
+        <div style="width:168px;height:168px;border-radius:38px;background:#4A2C4F;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(74,44,79,.22)"><svg viewBox="0 0 100 100" width="128" height="128"><use href="#sym-b2-r"></use></svg></div>
+        <div style="width:168px;height:168px;border-radius:38px;background:#F7EDE6;border:1px solid rgba(74,44,79,.18);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(74,44,79,.12)"><svg viewBox="0 0 100 100" width="128" height="128"><use href="#sym-b2"></use></svg></div>
+        <div style="width:128px;height:128px;border-radius:50%;background:#4A2C4F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="96" height="96"><use href="#sym-b2-r"></use></svg></div>
+        <div style="width:128px;height:128px;border-radius:50%;background:#E8B4B8;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="96" height="96"><use href="#sym-b2"></use></svg></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:22px;display:flex;align-items:flex-end;gap:22px"><svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-b2"></use></svg><svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-b2"></use></svg><svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-b2s"></use></svg><svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2s"></use></svg><svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-b2s"></use></svg><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-left:auto">64 · 48 · 32 · 24 · 16</span></div>
+        <div style="background:#4A2C4F;border-radius:6px;padding:22px;display:flex;align-items:flex-end;gap:22px;color:#F7EDE6"><svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-b2s-r"></use></svg><svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2s-r"></use></svg><svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-b2s-r"></use></svg><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-left:auto">64 · 48 · 32 · 24 · 16</span></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:12px 16px;display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:7px;background:#4A2C4F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="26" height="26"><use href="#sym-b2s-r"></use></svg></div><svg viewBox="0 0 260 56" width="81" height="17"><use href="#wm-f"></use></svg></div>
+          <div style="background:#4A2C4F;border-radius:6px;padding:12px 16px;display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:50%;background:#F7EDE6;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2s"></use></svg></div><svg viewBox="0 0 260 56" width="81" height="17"><use href="#wm-f-r"></use></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="5c" data-screen-label="5c Palette" style="display:flex;flex-direction:column;gap:16px;max-width:1320px;margin-top:16px">
+    <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">5c</span><h2 style="margin:0;font-weight:400;font-size:28px">Palette</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:6px;background:#4A2C4F;border:1px solid rgba(74,44,79,.18)"></div><div style="font-size:15px">Plum</div><div style="font-family:'DM Mono',monospace;font-size:11px;opacity:.75">#4A2C4F · wordmark, line work</div></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:6px;background:#E8B4B8;border:1px solid rgba(74,44,79,.18)"></div><div style="font-size:15px">Blush</div><div style="font-family:'DM Mono',monospace;font-size:11px;opacity:.75">#E8B4B8 · petals, bloom</div></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:6px;background:#B4553F;border:1px solid rgba(74,44,79,.18)"></div><div style="font-size:15px">Deep coral</div><div style="font-family:'DM Mono',monospace;font-size:11px;opacity:.75">#B4553F · inner petals</div></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:6px;background:#D4B483;border:1px solid rgba(74,44,79,.18)"></div><div style="font-size:15px">Champagne</div><div style="font-family:'DM Mono',monospace;font-size:11px;opacity:.75">#D4B483 · keystone, pistil</div></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:6px;background:#F7EDE6;border:1px solid rgba(74,44,79,.18)"></div><div style="font-size:15px">Nude</div><div style="font-family:'DM Mono',monospace;font-size:11px;opacity:.75">#F7EDE6 · background</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="turn-4" style="padding:64px 64px 48px;display:flex;flex-direction:column;gap:32px;border-bottom:1px solid rgba(74,44,79,.18)">
+  <header style="display:flex;flex-direction:column;gap:10px;max-width:900px">
+    <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B4553F">Filocalia · Round 4 · Between <a href="#3b">3b</a> and <a href="#3c">3c</a></div>
+    <h1 style="margin:0;font-weight:400;font-size:48px;line-height:1.05">Nouveau character, capital structure</h1>
+    <p style="margin:0;font-size:17px;line-height:1.5;text-wrap:pretty;max-width:760px">Three blends of 3b’s organic curves and 3c’s spaced, architectural capitals.</p>
+  </header>
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+    <article id="4a" data-screen-label="4a Nouveau Capitals" style="width:560px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">4a</span><h2 style="margin:0;font-weight:400;font-size:28px">Nouveau Capitals</h2></div>
+      <p style="margin:0 0 6px;font-size:15px;line-height:1.55;text-wrap:pretty;min-height:48px">3b’s swelling Nouveau letterforms set as spaced capitals like 3c. Soft curves, formal rhythm.</p>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-4a"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-4a-r"></use></svg></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-4a"></use></svg></div>
+        <div style="background:#4A2C4F;border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-4a-r"></use></svg></div>
+      </div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Small use · 120px</span><svg viewBox="0 0 420 110" width="120" height="31"><use href="#wm-4a"></use></svg></div>
+    </article>
+    <article id="4b" data-screen-label="4b Flared Small Caps" style="width:560px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">4b</span><h2 style="margin:0;font-weight:400;font-size:28px">Flared Small Caps</h2></div>
+      <p style="margin:0 0 6px;font-size:15px;line-height:1.55;text-wrap:pretty;min-height:48px">Flared, slightly organic capitals with a taller initial. Warmer than 3c, calmer than 3b.</p>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-4b"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-4b-r"></use></svg></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-4b"></use></svg></div>
+        <div style="background:#4A2C4F;border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-4b-r"></use></svg></div>
+      </div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Small use · 120px</span><svg viewBox="0 0 420 110" width="120" height="31"><use href="#wm-4b"></use></svg></div>
+    </article>
+    <article id="4c" data-screen-label="4c Ornamental Capitals" style="width:560px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">4c</span><h2 style="margin:0;font-weight:400;font-size:28px">Ornamental Capitals</h2></div>
+      <p style="margin:0 0 6px;font-size:15px;line-height:1.55;text-wrap:pretty;min-height:48px">3c’s inscribed capitals with Nouveau-style curled strokes on F, L and A, weighted up to match the arch. Ornament lives inside the letters.</p>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-4c"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-4c-r"></use></svg></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-4c"></use></svg></div>
+        <div style="background:#4A2C4F;border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-4c-r"></use></svg></div>
+      </div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Small use · 120px</span><svg viewBox="0 0 420 110" width="120" height="31"><use href="#wm-4c"></use></svg></div>
+    </article>
+  </div>
+</section>
+
+<section id="turn-3" style="padding:64px 64px 48px;display:flex;flex-direction:column;gap:32px;border-bottom:1px solid rgba(74,44,79,.18)">
+  <header style="display:flex;flex-direction:column;gap:10px;max-width:900px">
+    <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B4553F">Filocalia · Round 3 · New lettering for <a href="#2a">2a</a></div>
+    <h1 style="margin:0;font-weight:400;font-size:48px;line-height:1.05">Three new wordmarks</h1>
+    <p style="margin:0;font-size:17px;line-height:1.5;text-wrap:pretty;max-width:760px">Ornament removed from the lettering entirely; the arch symbol carries the decoration. Pick one and I'll refine its spacing and details, then roll it into every lockup.</p>
+  </header>
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+    <article id="3a" data-screen-label="3a Classic Garamond" style="width:560px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">3a</span><h2 style="margin:0;font-weight:400;font-size:28px">Classic Garamond</h2></div>
+      <p style="margin:0 0 6px;font-size:15px;line-height:1.55;text-wrap:pretty;min-height:48px">High-contrast old-style serif. The most refined and readable; quiet enough to let the arch carry the ornament.</p>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-3a"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-3a-r"></use></svg></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-3a"></use></svg></div>
+        <div style="background:#4A2C4F;border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-3a-r"></use></svg></div>
+      </div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Small use · 120px</span><svg viewBox="0 0 420 110" width="120" height="31"><use href="#wm-3a"></use></svg></div>
+    </article>
+    <article id="3b" data-screen-label="3b Nouveau Display" style="width:560px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">3b</span><h2 style="margin:0;font-weight:400;font-size:28px">Nouveau Display</h2></div>
+      <p style="margin:0 0 6px;font-size:15px;line-height:1.55;text-wrap:pretty;min-height:48px">Period-flavoured letterforms with soft swelling curves. Most Art Nouveau character, still clearly legible.</p>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-3b"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-3b-r"></use></svg></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-3b"></use></svg></div>
+        <div style="background:#4A2C4F;border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-3b-r"></use></svg></div>
+      </div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Small use · 120px</span><svg viewBox="0 0 420 110" width="120" height="31"><use href="#wm-3b"></use></svg></div>
+    </article>
+    <article id="3c" data-screen-label="3c Inscribed Capitals" style="width:560px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">3c</span><h2 style="margin:0;font-weight:400;font-size:28px">Inscribed Capitals</h2></div>
+      <p style="margin:0 0 6px;font-size:15px;line-height:1.55;text-wrap:pretty;min-height:48px">Spaced classical capitals with flared terminals. Echoes the arch as architecture; strongest and most formal.</p>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-3c"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 100 100" width="110" height="110"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="320" height="84"><use href="#wm-3c-r"></use></svg></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-3c"></use></svg></div>
+        <div style="background:#4A2C4F;border-radius:6px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="230" height="60"><use href="#wm-3c-r"></use></svg></div>
+      </div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Small use · 120px</span><svg viewBox="0 0 420 110" width="120" height="31"><use href="#wm-3c"></use></svg></div>
+    </article>
+  </div>
+</section>
+
+<section id="turn-2" style="padding:64px 64px 24px;display:flex;flex-direction:column;gap:32px;border-bottom:1px solid rgba(74,44,79,.18)">
+  <header style="display:flex;flex-direction:column;gap:10px;max-width:900px">
+    <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B4553F">Filocalia · Round 2 · Developing <a href="#1b">1b</a></div>
+    <h1 style="margin:0;font-weight:400;font-size:48px;line-height:1.05">The Arch, refined</h1>
+    <p style="margin:0;font-size:17px;line-height:1.5;text-wrap:pretty;max-width:760px">Heavier arch line, a fine halo behind the fan, a central petal vein and gilded springline rivets for richer detail at large sizes. The wordmark is custom high-contrast lettering whose only ornaments repeat the symbol: arch-foot curls bookending the word and keystone i-dots. A simplified small-size cut takes over at 32px and below.</p>
+  </header>
+
+  <div id="2a" data-screen-label="2a Primary lockups" style="display:flex;flex-direction:column;gap:16px;max-width:1320px">
+    <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">2a</span><h2 style="margin:0;font-weight:400;font-size:28px">Primary lockups</h2></div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Horizontal</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:16px">
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:280px;display:flex;align-items:center;justify-content:center;gap:24px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="420" height="110"><use href="#wm-b2"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:280px;display:flex;align-items:center;justify-content:center;gap:24px"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="420" height="110"><use href="#wm-b2-r"></use></svg></div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:8px">Stacked · app icon · avatar</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px"><svg viewBox="0 0 100 100" width="200" height="200"><use href="#sym-b2"></use></svg><svg viewBox="0 0 420 110" width="270" height="71"><use href="#wm-b2"></use></svg></div>
+      <div style="background:#4A2C4F;border-radius:6px;height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px"><svg viewBox="0 0 100 100" width="200" height="200"><use href="#sym-b2-r"></use></svg><svg viewBox="0 0 420 110" width="270" height="71"><use href="#wm-b2-r"></use></svg></div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:400px;display:grid;grid-template-columns:1fr 1fr;place-items:center;padding:24px;box-sizing:border-box">
+        <div style="width:150px;height:150px;border-radius:34px;background:#4A2C4F;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(74,44,79,.22)"><svg viewBox="0 0 100 100" width="116" height="116"><use href="#sym-b2-r"></use></svg></div>
+        <div style="width:150px;height:150px;border-radius:34px;background:#F7EDE6;border:1px solid rgba(74,44,79,.18);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(74,44,79,.12)"><svg viewBox="0 0 100 100" width="116" height="116"><use href="#sym-b2"></use></svg></div>
+        <div style="width:120px;height:120px;border-radius:50%;background:#4A2C4F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="90" height="90"><use href="#sym-b2-r"></use></svg></div>
+        <div style="width:120px;height:120px;border-radius:50%;background:#E8B4B8;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="90" height="90"><use href="#sym-b2"></use></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="2b" data-screen-label="2b Small-size cut" style="display:flex;flex-direction:column;gap:16px;max-width:1320px;margin-top:16px">
+    <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">2b</span><h2 style="margin:0;font-weight:400;font-size:28px">Small-size cut</h2></div>
+    <p style="margin:0;font-size:15px;line-height:1.55;max-width:760px;text-wrap:pretty">For favicons, tab icons and tiny avatars: three petals instead of five, a doubled arch weight, single-curl feet, and a solid gilded keystone. Halo, leaves and rivets drop out. Use the primary symbol above 48px and this cut at 32px and below.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:16px">
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:flex-end;gap:22px"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;width:80px">Primary</span>
+          <svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-b2"></use></svg>
+          <svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-b2"></use></svg>
+          <svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-b2"></use></svg>
+          <svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2"></use></svg>
+          <svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-b2"></use></svg></div>
+        <div style="display:flex;align-items:flex-end;gap:22px"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;width:80px">Small cut</span>
+          <svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-b2s"></use></svg>
+          <svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-b2s"></use></svg>
+          <svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-b2s"></use></svg>
+          <svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2s"></use></svg>
+          <svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-b2s"></use></svg></div>
+      </div>
+      <div style="background:#4A2C4F;border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:18px;color:#F7EDE6">
+        <div style="display:flex;align-items:flex-end;gap:22px"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;width:80px">Primary</span>
+          <svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-b2-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-b2-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-b2-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-b2-r"></use></svg></div>
+        <div style="display:flex;align-items:flex-end;gap:22px"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;width:80px">Small cut</span>
+          <svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-b2s-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-b2s-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-b2s-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2s-r"></use></svg>
+          <svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-b2s-r"></use></svg></div>
+      </div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:8px">In context · 32px</div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;gap:12px"><div style="width:32px;height:32px;border-radius:7px;background:#4A2C4F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="26" height="26"><use href="#sym-b2s-r"></use></svg></div><span style="font-size:15px">Filocalia</span></div>
+      <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:14px 18px;display:flex;align-items:center;gap:12px"><div style="width:32px;height:32px;border-radius:50%;background:#E8B4B8;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2s"></use></svg></div><span style="font-size:15px">@filocalia</span></div>
+      <div style="background:#4A2C4F;border-radius:6px;padding:14px 18px;display:flex;align-items:center;gap:12px;color:#F7EDE6"><div style="width:32px;height:32px;border-radius:50%;background:#F7EDE6;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="24" height="24"><use href="#sym-b2s"></use></svg></div><span style="font-size:15px">@filocalia</span></div>
+    </div>
+  </div>
+
+  <div id="2c" data-screen-label="2c Custom lettering" style="display:flex;flex-direction:column;gap:16px;max-width:1320px;margin-top:16px">
+    <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">2c</span><h2 style="margin:0;font-weight:400;font-size:28px">Custom lettering</h2></div>
+    <p style="margin:0;font-size:15px;line-height:1.55;max-width:760px;text-wrap:pretty">Thick-and-thin contrast: weighted stems, hairline bowls with shaded stress, ball terminals. Tall ascenders over a modest x-height for elegance. Ornament now echoes the symbol only: the F foot and final-a tail are the arch feet (left and right), and the i-dots are miniature keystones.</p>
+    <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:40px;display:flex;justify-content:center">
+      <svg viewBox="0 0 420 110" width="1100" height="288" style="max-width:100%;height:auto">
+        <g style="stroke:#B4553F;stroke-width:.5;stroke-dasharray:3 3;opacity:.6">
+          <line x1="0" y1="7" x2="420" y2="7"></line><line x1="0" y1="54.6" x2="420" y2="54.6"></line><line x1="0" y1="93.8" x2="420" y2="93.8"></line>
+        </g>
+        <use href="#wm-b2"></use>
+      </svg>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7"><span>Ascender</span><span>x-height</span><span>Baseline</span><span>Stems 5 · hairlines 1.7</span></div>
+  </div>
+</section>
+
+<section id="turn-1" style="padding:64px 64px 96px;display:flex;flex-direction:column;gap:40px">
+  <header style="display:flex;flex-direction:column;gap:10px;max-width:900px">
+    <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B4553F">Filocalia · Logo exploration · Round 1</div>
+    <h1 style="margin:0;font-weight:400;font-size:48px;line-height:1.05">Three directions in modern Art Nouveau</h1>
+    <p style="margin:0;font-size:17px;line-height:1.5;text-wrap:pretty;max-width:720px">Each concept shown as horizontal and stacked lockups on nude and plum, an app icon set, and a small-size check down to 16px. Palette strictly: plum, blush, deep coral, champagne, nude.</p>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+    <sc-for list="{{ concepts }}" as="c" hint-placeholder-count="3">
+      <article id="{{ c.optId }}" data-screen-label="{{ c.optId }} {{ c.name }}" style="width:620px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="font-family:'DM Mono',monospace;font-size:13px;background:#4A2C4F;color:#F7EDE6;padding:4px 9px;border-radius:999px">{{ c.optId }}</span>
+          <h2 style="margin:0;font-weight:400;font-size:28px">{{ c.name }}</h2>
+        </div>
+        <p style="margin:0 0 8px;font-size:15px;line-height:1.55;text-wrap:pretty;min-height:70px">{{ c.desc }}</p>
+
+        <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Horizontal</div>
+        <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:200px;display:flex;align-items:center;justify-content:center;gap:18px;color:#4A2C4F">
+          <svg viewBox="0 0 100 100" width="104" height="104"><use href="#sym-{{ c.id }}"></use></svg>
+          <svg viewBox="0 0 420 110" width="300" height="79"><use href="#wm-{{ c.id }}"></use></svg>
+        </div>
+        <div style="background:#4A2C4F;border-radius:6px;height:200px;display:flex;align-items:center;justify-content:center;gap:18px;color:#F7EDE6">
+          <svg viewBox="0 0 100 100" width="104" height="104"><use href="#sym-{{ c.id }}-r"></use></svg>
+          <svg viewBox="0 0 420 110" width="300" height="79"><use href="#wm-{{ c.id }}-r"></use></svg>
+        </div>
+
+        <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:8px">Stacked</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#4A2C4F">
+            <svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-{{ c.id }}"></use></svg>
+            <svg viewBox="0 0 420 110" width="220" height="58"><use href="#wm-{{ c.id }}"></use></svg>
+          </div>
+          <div style="background:#4A2C4F;border-radius:6px;height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#F7EDE6">
+            <svg viewBox="0 0 100 100" width="150" height="150"><use href="#sym-{{ c.id }}-r"></use></svg>
+            <svg viewBox="0 0 420 110" width="220" height="58"><use href="#wm-{{ c.id }}-r"></use></svg>
+          </div>
+        </div>
+
+        <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:8px">App icon &amp; avatar</div>
+        <div style="display:flex;align-items:center;gap:20px">
+          <div style="width:168px;height:168px;border-radius:38px;background:#4A2C4F;display:flex;align-items:center;justify-content:center;color:#F7EDE6;box-shadow:0 10px 24px rgba(74,44,79,.22)">
+            <svg viewBox="0 0 100 100" width="128" height="128"><use href="#sym-{{ c.id }}-r"></use></svg>
+          </div>
+          <div style="width:168px;height:168px;border-radius:38px;background:#F7EDE6;border:1px solid rgba(74,44,79,.18);display:flex;align-items:center;justify-content:center;color:#4A2C4F;box-shadow:0 10px 24px rgba(74,44,79,.12)">
+            <svg viewBox="0 0 100 100" width="128" height="128"><use href="#sym-{{ c.id }}"></use></svg>
+          </div>
+          <div style="width:120px;height:120px;border-radius:50%;background:#4A2C4F;display:flex;align-items:center;justify-content:center;color:#F7EDE6">
+            <svg viewBox="0 0 100 100" width="92" height="92"><use href="#sym-{{ c.id }}-r"></use></svg>
+          </div>
+        </div>
+
+        <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:8px">Small-size check · 64 / 48 / 32 / 16 px</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="background:#F7EDE6;border:1px solid rgba(74,44,79,.18);border-radius:6px;padding:18px;display:flex;align-items:flex-end;gap:18px;color:#4A2C4F">
+            <svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-{{ c.id }}"></use></svg>
+            <svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-{{ c.id }}"></use></svg>
+            <div style="width:32px;height:32px;border-radius:7px;background:#4A2C4F;display:flex;align-items:center;justify-content:center;color:#F7EDE6"><svg viewBox="0 0 100 100" width="26" height="26"><use href="#sym-{{ c.id }}-r"></use></svg></div>
+            <svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-{{ c.id }}"></use></svg>
+            <svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-{{ c.id }}"></use></svg>
+          </div>
+          <div style="background:#4A2C4F;border-radius:6px;padding:18px;display:flex;align-items:flex-end;gap:18px;color:#F7EDE6">
+            <svg viewBox="0 0 100 100" width="64" height="64"><use href="#sym-{{ c.id }}-r"></use></svg>
+            <svg viewBox="0 0 100 100" width="48" height="48"><use href="#sym-{{ c.id }}-r"></use></svg>
+            <div style="width:32px;height:32px;border-radius:50%;background:#F7EDE6;display:flex;align-items:center;justify-content:center;color:#4A2C4F"><svg viewBox="0 0 100 100" width="26" height="26"><use href="#sym-{{ c.id }}"></use></svg></div>
+            <svg viewBox="0 0 100 100" width="32" height="32"><use href="#sym-{{ c.id }}-r"></use></svg>
+            <svg viewBox="0 0 100 100" width="16" height="16"><use href="#sym-{{ c.id }}-r"></use></svg>
+          </div>
+        </div>
+        <p style="margin:0;font-size:13px;line-height:1.5;opacity:.8;text-wrap:pretty">{{ c.small }}</p>
+      </article>
+    </sc-for>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      concepts: [
+        { id: 'a', optId: '1a', name: 'The Offering',
+          desc: 'A three-petal bloom rises from two open, cupped hands. Petals read as pigment swatches; the hands end in whiplash curls that reach outward, beauty handed to people rather than kept behind glass.',
+          small: 'At 32px the bloom-over-hands silhouette holds; curls soften at 16px but the triad of petals stays legible.' },
+        { id: 'b', optId: '1b', name: 'The Arch',
+          desc: 'A Mucha-style halo arch frames a fan of five swatch petals. The arch feet curl outward like an open doorway, a school with its doors open, with a gilded keystone and a leafed base.',
+          small: 'Most ornamental of the three; the arch and fan carry at 32px, finer leaf detail drops out at 16px.' },
+        { id: 'c', optId: '1c', name: 'The Spreading Bloom',
+          desc: 'A rotating four-petal bloom whose tendrils spiral outward in every direction: teaching, sharing and travelling as one movement. Alternating blush and coral swatches around a champagne heart.',
+          small: 'Strongest at small sizes. The pinwheel reads clearly at 16px, making it the most robust app icon.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

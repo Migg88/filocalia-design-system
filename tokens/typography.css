@@ -1,0 +1,20 @@
+:root{
+  --font-display:"Marcellus","Cormorant Garamond",Georgia,serif;
+  --font-display-caps:"Marcellus SC","Marcellus",Georgia,serif;
+  --font-body:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,monospace;
+
+  --text-display-xl:64px; --lh-display-xl:1.02;
+  --text-display-l:48px;  --lh-display-l:1.05;
+  --text-display-m:36px;  --lh-display-m:1.1;
+  --text-display-s:28px;  --lh-display-s:1.15;
+  --text-title:21px;      --lh-title:1.25;
+  --text-body-l:18px;     --lh-body-l:1.55;
+  --text-body:16px;       --lh-body:1.55;
+  --text-body-s:14px;     --lh-body-s:1.5;
+  --text-caption:13px;    --lh-caption:1.4;
+  --text-label:11.5px;    --tracking-label:.14em;
+  --tracking-caps:.06em;
+
+  --weight-light:300; --weight-regular:400; --weight-medium:500; --weight-semibold:600;
+}

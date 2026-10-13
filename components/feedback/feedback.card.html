@@ -1,0 +1,19 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Feedback" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:24px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const NS=Object.values(window).find(v=>v&&typeof v==="object"&&v.Button&&v.Card)||{};
+const I=({n,s=18})=><i data-lucide={n} style={{width:s,height:s,strokeWidth:1.5}}></i>;
+const Row=({children,gap=12,style})=><div style={{display:"flex",flexWrap:"wrap",gap,alignItems:"center",...style}}>{children}</div>;
+function App(){const {Dialog,Toast,Tooltip,Button,IconButton}=NS;return <div style={{display:"grid",gridTemplateColumns:"1.2fr 1fr",gap:20,alignItems:"start"}}>
+<div style={{height:330,borderRadius:"var(--radius-md)",overflow:"hidden"}}><Dialog inline open title="Confirm your seat" onClose={()=>{}} actions={<><Button variant="ghost" size="sm">Not now</Button><Button size="sm">Confirm</Button></>}>Bridal foundations · Madrid · 14 Nov. You can change dates up to 7 days before.</Dialog></div>
+<div style={{display:"flex",flexDirection:"column",gap:12}}><Toast tone="success" title="Seat reserved">See you in Madrid.</Toast><Toast tone="error" title="Payment failed" onClose={()=>{}}>Try another card.</Toast><Toast title="New tour date">Lisboa, 2 Feb.</Toast>
+<div style={{paddingTop:30}}><Tooltip content="Save to favourites"><IconButton label="Save" variant="soft" icon={<I n="heart"/>}/></Tooltip></div></div></div>;}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+setTimeout(()=>window.lucide&&lucide.createIcons(),50);
+</script></body></html>

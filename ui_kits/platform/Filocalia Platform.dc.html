@@ -1,0 +1,270 @@
+<!-- @dsCard group="Platform" viewport="1280x800" name="Filocalia web platform" -->
+<!-- @startingPoint section="Screens" subtitle="Course catalogue, booking and tour calendar" viewport="1280x800" -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:#F7EDE6}a{color:#4A2C4F;text-decoration-color:#B4553F}a:hover{color:#9E4935}</style>
+</helmet>
+
+<div data-screen-label="Filocalia platform" style="min-height:100vh;background:var(--surface-page);color:var(--text-primary);font-family:var(--font-body)">
+  <header style="position:sticky;top:0;z-index:20;background:var(--nude);border-bottom:1px solid var(--border-subtle)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 32px;height:76px;display:flex;align-items:center;gap:40px">
+      <img src="../../assets/logo/filocalia-horizontal-positive.svg" alt="Filocalia" onClick="{{ goCatalog }}" style="height:44px;cursor:pointer">
+      <nav style="display:flex;gap:28px;flex:1">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4">
+          <button onClick="{{ n.go }}" style="position:relative;background:none;border:none;padding:8px 0;font-family:var(--font-body);font-size:15px;cursor:pointer;color:{{ n.color }};font-weight:{{ n.weight }}">{{ n.label }}<span style="position:absolute;left:50%;bottom:-4px;width:7px;height:7px;margin-left:-3.5px;transform:rotate(45deg);background:var(--champagne);border:1.5px solid var(--plum);box-sizing:border-box;opacity:{{ n.dot }}"></span></button>
+        </sc-for>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button style="height:36px;padding:0 16px;border-radius:999px;border:1.5px solid var(--plum);background:transparent;color:var(--plum);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer" style-hover="background:var(--plum-a08)">Sign in</button>
+        <button onClick="{{ goCatalog }}" style="height:36px;padding:0 16px;border-radius:999px;border:none;background:var(--plum);color:var(--nude);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer" style-hover="background:var(--plum-hover)">Find a course</button>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ true }}">
+    <section style="background:var(--plum);color:var(--nude)">
+      <div style="max-width:1200px;margin:0 auto;padding:72px 32px 64px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne)">Makeup · Hair · Nails · Aesthetics</div>
+          <h1 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:64px;line-height:1.02;text-wrap:pretty">Beauty, shared and taught</h1>
+          <p style="margin:0;font-size:18px;line-height:1.55;max-width:48ch;opacity:.86">Learn from working artists in your own city. Every course ends with a real client day, and coaching to help you start earning.</p>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <button onClick="{{ scrollCourses }}" style="height:52px;padding:0 28px;border-radius:999px;border:none;background:var(--blush);color:var(--plum);font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--blush-hover)">Browse courses</button>
+            <button onClick="{{ goTours }}" style="height:52px;padding:0 28px;border-radius:999px;border:1.5px solid var(--nude);background:transparent;color:var(--nude);font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer" style-hover="background:rgba(247,237,230,.1)">Tour calendar</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-end;justify-content:flex-end">
+          <div style="width:200px;height:280px;border-radius:999px 999px 6px 6px;background:repeating-linear-gradient(135deg,#5C3A62 0 8px,#553459 8px 16px);display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;font-family:var(--font-mono);font-size:11px;color:var(--blush)">student at work</div>
+          <div style="width:150px;height:210px;border-radius:999px 999px 6px 6px;background:var(--blush);display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;font-family:var(--font-mono);font-size:11px;color:var(--plum)">hands, close-up</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" style="max-width:1200px;margin:0 auto;padding:56px 32px 96px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)">Upcoming courses</div>
+          <h2 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:36px;line-height:1.1">Find your next skill</h2>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+            <button onClick="{{ f.pick }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};font-family:var(--font-body);font-size:14px;cursor:pointer">{{ f.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px">
+        <sc-for list="{{ visibleCourses }}" as="c" hint-placeholder-count="6">
+          <article onClick="{{ c.open }}" style="display:flex;flex-direction:column;background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:999px 999px 10px 10px;overflow:hidden;cursor:pointer;transition:all 220ms cubic-bezier(.22,.61,.36,1)" style-hover="box-shadow:var(--shadow-md);transform:translateY(-2px)">
+            <div style="aspect-ratio:4/4.4;background:repeating-linear-gradient(135deg,var(--nude-sunken) 0 8px,var(--nude-raised) 8px 16px);display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">{{ c.photo }}</div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:8px;flex:1">
+              <div style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)">{{ c.discipline }} · {{ c.length }}</div>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.25">{{ c.title }}</h3>
+              <div style="font-size:14px;line-height:1.5;color:var(--text-secondary)">{{ c.blurb }}</div>
+              <div style="margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:8px">
+                <span style="display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--champagne-soft);font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase">{{ c.city }}</span>
+                <span style="font-family:var(--font-mono);font-size:13px">{{ c.priceLabel }}</span>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isCourse }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1200px;margin:0 auto;padding:32px 32px 96px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;gap:8px;font-size:14px;color:var(--text-muted)"><a href="#" onClick="{{ goCatalog }}">Courses</a><span>·</span><span>{{ course.discipline }}</span></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:start">
+        <div style="aspect-ratio:4/5;border-radius:999px 999px 10px 10px;background:repeating-linear-gradient(135deg,var(--nude-sunken) 0 8px,var(--nude-raised) 8px 16px);display:flex;align-items:flex-end;padding:20px;box-sizing:border-box;font-family:var(--font-mono);font-size:12px;color:var(--text-muted)">{{ course.photo }}</div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)">{{ course.discipline }} · {{ course.length }} · {{ course.level }}</div>
+          <h1 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:48px;line-height:1.05">{{ course.title }}</h1>
+          <p style="margin:0;font-size:18px;line-height:1.55;color:var(--text-secondary)">{{ course.long }}</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ course.learn }}" as="l" hint-placeholder-count="4">
+              <div style="display:flex;gap:12px;align-items:baseline;font-size:15px"><span style="flex:none;width:8px;height:8px;transform:translateY(-1px) rotate(45deg);background:var(--champagne);border:1.5px solid var(--plum);box-sizing:border-box"></span>{{ l }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding-top:8px">
+            <div style="font-size:14px;font-weight:500">Choose a date</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ sessions }}" as="s" hint-placeholder-count="3">
+                <button onClick="{{ s.pick }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 16px;border-radius:10px;border:1.5px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-family:var(--font-body);cursor:pointer;text-align:left"><span style="font-size:15px;font-weight:500">{{ s.date }} · {{ s.city }}</span><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.8">{{ s.seats }}</span></button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;border-radius:10px;background:var(--surface-card);border:1px solid var(--border-subtle);margin-top:4px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-display);font-size:28px">{{ course.priceLabel }}</span><span style="font-size:13px;color:var(--text-muted)">Kit included · pay in 3 instalments</span></div>
+            <button onClick="{{ goBook }}" style="height:52px;padding:0 28px;border-radius:999px;border:none;background:var(--coral);color:var(--nude);font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--coral-hover)">Book a seat</button>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;padding-top:12px;border-top:1px solid var(--border-subtle)">
+            <div style="width:56px;height:56px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:22px">{{ course.initial }}</div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">Taught by {{ course.teacher }}</span><span style="font-size:14px;color:var(--text-muted)">{{ course.teacherBio }}</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isBook }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1080px;margin:0 auto;padding:48px 32px 96px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)">Step 2 of 2 · Your details</div>
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:36px;line-height:1.1">Reserve your seat</h1>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Full name<input value="{{ name }}" onChange="{{ setName }}" placeholder="María López" style="height:44px;padding:0 14px;border-radius:6px;border:1.5px solid var(--border-strong);background:var(--surface-card);font-family:var(--font-body);font-size:15px;color:var(--plum);outline:none" style-focus="border-color:var(--plum);box-shadow:0 0 0 3px var(--blush-soft)"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Email<input value="{{ email }}" onChange="{{ setEmail }}" placeholder="you@studio.com" style="height:44px;padding:0 14px;border-radius:6px;border:1.5px solid var(--border-strong);background:var(--surface-card);font-family:var(--font-body);font-size:15px;color:var(--plum);outline:none" style-focus="border-color:var(--plum);box-shadow:0 0 0 3px var(--blush-soft)"></label>
+          <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Your experience<select style="height:44px;padding:0 14px;border-radius:6px;border:1.5px solid var(--border-strong);background:var(--surface-card);font-family:var(--font-body);font-size:15px;color:var(--plum)"><option>Just starting</option><option>Some practice</option><option>Working professional</option></select></label>
+        </div>
+        <button onClick="{{ toggleCoach }}" style="display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:10px;border:1px solid var(--border-subtle);background:var(--surface-card);cursor:pointer;text-align:left;font-family:var(--font-body);color:var(--plum)">
+          <span style="flex:none;width:20px;height:20px;margin-top:2px;border-radius:4px;border:1.5px solid var(--plum);background:{{ coachBg }};display:flex;align-items:center;justify-content:center;color:var(--nude);font-size:13px">{{ coachMark }}</span>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px">Add business coaching · € 120</span><span style="font-size:13px;color:var(--text-muted)">Four sessions after the course: pricing, first clients, content.</span></span>
+        </button>
+        <div style="display:flex;gap:12px">
+          <button onClick="{{ goCourseBack }}" style="height:52px;padding:0 24px;border-radius:999px;border:none;background:transparent;color:var(--plum);font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--plum-a08)">Back</button>
+          <button onClick="{{ confirm }}" style="height:52px;padding:0 28px;border-radius:999px;border:none;background:var(--plum);color:var(--nude);font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--plum-hover)">Confirm and pay {{ totalLabel }}</button>
+        </div>
+      </div>
+      <aside style="background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:999px 999px 10px 10px;overflow:hidden">
+        <div style="height:180px;background:repeating-linear-gradient(135deg,var(--nude-sunken) 0 8px,var(--nude-raised) 8px 16px);display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">{{ course.photo }}</div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:var(--font-display);font-size:21px">{{ course.title }}</div>
+          <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:var(--text-muted)">Date</span><span>{{ session.date }} · {{ session.city }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:var(--text-muted)">Course</span><span>{{ course.priceLabel }}</span></div>
+          <sc-if value="{{ coach }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:var(--text-muted)">Coaching</span><span>€ 120</span></div></sc-if>
+          <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border-subtle);font-size:16px;font-weight:500"><span>Total</span><span>{{ totalLabel }}</span></div>
+        </div>
+      </aside>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isConfirmed }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:640px;margin:0 auto;padding:96px 32px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
+      <img src="../../assets/logo/filocalia-symbol-positive.svg" alt="" style="width:120px">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:48px;line-height:1.05">See you in {{ session.city }}</h1>
+      <p style="margin:0;font-size:18px;line-height:1.55;color:var(--text-secondary)">Your seat for {{ course.title }} on {{ session.date }} is reserved. We’ve sent the details and your kit list to {{ emailShown }}.</p>
+      <div style="display:flex;gap:12px;margin-top:8px">
+        <button onClick="{{ goCatalog }}" style="height:44px;padding:0 22px;border-radius:999px;border:1.5px solid var(--plum);background:transparent;color:var(--plum);font-family:var(--font-body);font-size:15px;font-weight:500;cursor:pointer" style-hover="background:var(--plum-a08)">More courses</button>
+        <button onClick="{{ goTours }}" style="height:44px;padding:0 22px;border-radius:999px;border:none;background:var(--plum);color:var(--nude);font-family:var(--font-body);font-size:15px;font-weight:500;cursor:pointer" style-hover="background:var(--plum-hover)">See the tour calendar</button>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isTours }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1200px;margin:0 auto;padding:56px 32px 96px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:8px;max-width:640px">
+        <div style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)">Learning tours · 2026–27</div>
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:48px;line-height:1.05">Our artists, coming to you</h1>
+        <p style="margin:0;font-size:17px;line-height:1.55;color:var(--text-secondary)">Touring stylists bring masterclasses city by city. Pick a stop near you.</p>
+      </div>
+      <div style="display:flex;gap:28px;border-bottom:1px solid var(--border-subtle)">
+        <sc-for list="{{ tourTabs }}" as="t" hint-placeholder-count="4">
+          <button onClick="{{ t.pick }}" style="position:relative;background:none;border:none;padding:12px 0 14px;font-family:var(--font-body);font-size:15px;cursor:pointer;color:{{ t.color }};font-weight:{{ t.weight }}">{{ t.label }}<span style="position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--plum);opacity:{{ t.dot }}"></span><span style="position:absolute;left:50%;bottom:-5px;width:8px;height:8px;margin-left:-4px;transform:rotate(45deg);background:var(--champagne);border:1.5px solid var(--plum);box-sizing:border-box;opacity:{{ t.dot }}"></span></button>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ visibleTours }}" as="s" hint-placeholder-count="5">
+          <div style="display:grid;grid-template-columns:110px minmax(0,1.2fr) minmax(0,1fr) auto;gap:24px;align-items:center;padding:20px 0;border-bottom:1px solid var(--border-subtle)">
+            <div style="display:flex;flex-direction:column"><span style="font-family:var(--font-display);font-size:36px;line-height:1">{{ s.day }}</span><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">{{ s.month }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-display);font-size:21px">{{ s.city }}</span><span style="font-size:14px;color:var(--text-muted)">{{ s.venue }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px">{{ s.topic }}</span><span style="font-size:14px;color:var(--text-muted)">with {{ s.artist }}</span></div>
+            <button onClick="{{ s.book }}" style="height:36px;padding:0 16px;border-radius:999px;border:1.5px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer">{{ s.cta }}</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="position:fixed;right:24px;bottom:24px;display:flex;gap:14px;align-items:flex-start;width:340px;padding:14px 16px;border-radius:10px;background:var(--plum);color:var(--nude);box-shadow:var(--shadow-lg);z-index:50">
+      <span style="flex:none;width:10px;height:10px;margin-top:6px;transform:rotate(45deg);background:var(--champagne);border:1.5px solid var(--nude);box-sizing:border-box"></span>
+      <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">{{ toast.title }}</span><span style="font-size:14px;opacity:.82">{{ toast.body }}</span></div>
+      <button onClick="{{ closeToast }}" aria-label="Dismiss" style="background:none;border:none;color:var(--nude);font-size:18px;cursor:pointer;padding:0">×</button>
+    </div>
+  </sc-if>
+
+  <footer style="background:var(--plum);color:var(--nude)">
+    <div style="max-width:1200px;margin:0 auto;padding:48px 32px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+      <img src="../../assets/logo/filocalia-horizontal-reversed.svg" alt="Filocalia" style="height:48px">
+      <div style="display:flex;gap:24px;font-size:14px;opacity:.85"><span>Courses</span><span>Services</span><span>Learning tours</span><span>Coaching</span><span>For stylists</span></div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { screen: 'catalog', filter: 'All', courseId: 'bridal', sessionIdx: 0, coach: false, name: '', email: '', tourTab: 'All cities', toast: null, booked: {} };
+  courses = [
+    { id:'bridal', discipline:'Makeup', length:'6 weeks', level:'Beginner', title:'Bridal makeup foundations', blurb:'Skin prep, long-wear and photo-ready looks.', city:'Madrid', price:480, photo:'bride, natural light', teacher:'Lucía Ferrer', initial:'L', teacherBio:'Bridal artist, 12 years · 900+ weddings',
+      long:'From consultation to the last touch-up: build a bridal kit, plan the day and create looks that last from ceremony to last dance.',
+      learn:['Skin preparation for every skin type','Long-wear and waterproof techniques','Working with photographers and light','A real bride on your client day'] },
+    { id:'balayage', discipline:'Hair', length:'4 weeks', level:'Intermediate', title:'Balayage and soft colour', blurb:'Hand-painted lightening, toning and aftercare.', city:'Lisboa', price:560, photo:'colour session', teacher:'Inês Duarte', initial:'I', teacherBio:'Colourist and salon owner, Lisboa',
+      long:'Paint light by hand. Learn placement, lifting and toning for natural, low-maintenance colour clients love.', learn:['Reading hair and undertones','Freehand painting patterns','Toning and gloss','Consultation and aftercare'] },
+    { id:'gel', discipline:'Nails', length:'2 weekends', level:'Beginner', title:'Gel sculpting essentials', blurb:'Structure, shape and a durable finish.', city:'Madrid', price:320, photo:'nail detail', teacher:'Carla Ruiz', initial:'C', teacherBio:'Nail artist and educator',
+      long:'Build strong, elegant extensions with gel. Two weekends, full kit included.', learn:['Prep and hygiene','Forms and tips','Apex and structure','Finishing and maintenance'] },
+    { id:'skin', discipline:'Aesthetics', length:'5 weeks', level:'Professional', title:'Facial treatments and skin health', blurb:'Treatment protocols for a modern studio.', city:'Ciudad de México', price:640, photo:'treatment room', teacher:'Dra. Ana Morales', initial:'A', teacherBio:'Dermatologist and trainer',
+      long:'Evidence-based facial protocols, client assessment and treatment planning for your own studio.', learn:['Skin analysis','Cleansing and exfoliation protocols','Treatment planning','Safety and contraindications'] },
+    { id:'editorial', discipline:'Makeup', length:'3 weeks', level:'Intermediate', title:'Editorial and colour play', blurb:'Graphic liner, texture and bold colour.', city:'Barcelona', price:420, photo:'editorial shoot', teacher:'Lucía Ferrer', initial:'L', teacherBio:'Bridal artist, 12 years · 900+ weddings',
+      long:'Push colour and texture for editorial and social content, then shoot your own portfolio.', learn:['Colour theory for skin','Graphic shapes','Texture and finish','Portfolio shoot'] },
+    { id:'updo', discipline:'Hair', length:'2 weeks', level:'Beginner', title:'Event styling and updos', blurb:'Braids, waves and secure updos.', city:'Sevilla', price:290, photo:'updo in progress', teacher:'Inês Duarte', initial:'I', teacherBio:'Colourist and salon owner, Lisboa',
+      long:'Classic and modern updos for weddings and events, built to hold all day.', learn:['Prep and texture','Pinning that holds','Braided structures','Accessories'] }
+  ];
+  sessions = [{date:'14 Nov',seats:'3 seats left'},{date:'9 Jan',seats:'8 seats'},{date:'6 Mar',seats:'12 seats'}];
+  tours = [
+    {id:1,day:'21',month:'Nov',city:'Valencia',venue:'Estudio Turia',topic:'Bridal masterclass',artist:'Lucía Ferrer'},
+    {id:2,day:'05',month:'Dec',city:'Porto',venue:'Casa da Luz',topic:'Soft colour in a day',artist:'Inês Duarte'},
+    {id:3,day:'16',month:'Jan',city:'Bilbao',venue:'Atelier Norte',topic:'Gel sculpting intensive',artist:'Carla Ruiz'},
+    {id:4,day:'30',month:'Jan',city:'Guadalajara',venue:'Espacio Jardín',topic:'Skin health for studios',artist:'Dra. Ana Morales'},
+    {id:5,day:'13',month:'Feb',city:'Lisboa',venue:'Filocalia Lisboa',topic:'Editorial colour play',artist:'Lucía Ferrer'}
+  ];
+  go = (screen, extra = {}) => { this.setState({ screen, ...extra }); window.scrollTo(0, 0); };
+  renderVals() {
+    const s = this.state;
+    const course = this.courses.find(c => c.id === s.courseId);
+    const fmt = n => '€ ' + n;
+    const navDefs = [['Courses','catalog'],['Services',null],['Learning tours','tours'],['Coaching',null]];
+    const activeNav = s.screen === 'tours' ? 'tours' : 'catalog';
+    const disciplines = ['All','Makeup','Hair','Nails','Aesthetics'];
+    const tourCountries = { 'All cities': null, 'Spain': ['Valencia','Bilbao'], 'Portugal': ['Porto','Lisboa'], 'Mexico': ['Guadalajara'] };
+    const session = { ...this.sessions[s.sessionIdx], city: course.city };
+    const total = course.price + (s.coach ? 120 : 0);
+    return {
+      isCatalog: s.screen === 'catalog', isCourse: s.screen === 'course', isBook: s.screen === 'book', isConfirmed: s.screen === 'confirmed', isTours: s.screen === 'tours',
+      navItems: navDefs.map(([label, scr]) => { const on = scr === activeNav; return { label, color: on ? 'var(--plum)' : 'var(--text-muted)', weight: on ? 500 : 400, dot: on ? 1 : 0,
+        go: () => scr ? this.go(scr) : this.setState({ toast: { title: label + ' is coming soon', body: 'This prototype covers courses and tours.' } }) }; }),
+      goCatalog: e => { e && e.preventDefault && e.preventDefault(); this.go('catalog'); },
+      goTours: () => this.go('tours'),
+      scrollCourses: () => { const el = document.getElementById('courses'); if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); },
+      filters: disciplines.map(d => { const on = d === s.filter; return { label: d, pick: () => this.setState({ filter: d }), bg: on ? 'var(--plum)' : 'transparent', fg: on ? 'var(--nude)' : 'var(--plum)', bd: on ? 'var(--plum)' : 'var(--border-strong)' }; }),
+      visibleCourses: this.courses.filter(c => s.filter === 'All' || c.discipline === s.filter).map(c => ({ ...c, priceLabel: fmt(c.price), open: () => this.go('course', { courseId: c.id, sessionIdx: 0 }) })),
+      course: { ...course, priceLabel: fmt(course.price) },
+      sessions: this.sessions.map((x, i) => { const on = i === s.sessionIdx; return { ...x, city: course.city, pick: () => this.setState({ sessionIdx: i }), bg: on ? 'var(--plum)' : 'var(--surface-card)', fg: on ? 'var(--nude)' : 'var(--plum)', bd: on ? 'var(--plum)' : 'var(--border-strong)' }; }),
+      session,
+      goBook: () => this.go('book'), goCourseBack: () => this.go('course'),
+      name: s.name, email: s.email,
+      setName: e => this.setState({ name: e.target.value }), setEmail: e => this.setState({ email: e.target.value }),
+      coach: s.coach, coachBg: s.coach ? 'var(--plum)' : 'var(--surface-card)', coachMark: s.coach ? '✓' : '',
+      toggleCoach: () => this.setState({ coach: !s.coach }),
+      totalLabel: fmt(total),
+      confirm: () => this.go('confirmed', { toast: { title: 'Seat reserved', body: course.title + ' · ' + session.date } }),
+      emailShown: s.email || 'your inbox',
+      tourTabs: Object.keys(tourCountries).map(t => { const on = t === s.tourTab; return { label: t, pick: () => this.setState({ tourTab: t }), color: on ? 'var(--plum)' : 'var(--text-muted)', weight: on ? 500 : 400, dot: on ? 1 : 0 }; }),
+      visibleTours: this.tours.filter(t => !tourCountries[s.tourTab] || tourCountries[s.tourTab].includes(t.city)).map(t => { const b = s.booked[t.id];
+        return { ...t, cta: b ? 'On your list' : 'Save my spot', bg: b ? 'var(--plum)' : 'transparent', fg: b ? 'var(--nude)' : 'var(--plum)', bd: 'var(--plum)',
+          book: () => this.setState({ booked: { ...s.booked, [t.id]: !b }, toast: b ? null : { title: 'Spot saved', body: t.city + ' · ' + t.day + ' ' + t.month } }) }; }),
+      toast: s.toast, closeToast: () => this.setState({ toast: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

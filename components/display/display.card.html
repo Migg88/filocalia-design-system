@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x440" name="Display" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:24px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const NS=Object.values(window).find(v=>v&&typeof v==="object"&&v.Button&&v.Card)||{};
+const I=({n,s=18})=><i data-lucide={n} style={{width:s,height:s,strokeWidth:1.5}}></i>;
+const Row=({children,gap=12,style})=><div style={{display:"flex",flexWrap:"wrap",gap,alignItems:"center",...style}}>{children}</div>;
+function App(){const {Card,Badge,Tag,Button}=NS;const ph=<div style={{width:"100%",height:"100%",background:"repeating-linear-gradient(135deg,var(--nude-sunken) 0 8px,var(--nude-raised) 8px 16px)",display:"flex",alignItems:"flex-end",padding:10,boxSizing:"border-box",fontFamily:"var(--font-mono)",fontSize:11,color:"var(--text-muted)"}}>course photo</div>;
+return <div style={{display:"flex",flexDirection:"column",gap:16}}>
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:14}}>
+<Card arch interactive media={ph} eyebrow="Makeup · 6 wks" title="Bridal foundations" footer={<><Badge tone="champagne">Madrid</Badge><Button size="sm">Enrol</Button></>}/>
+<Card interactive media={ph} eyebrow="Nails" title="Gel sculpting" footer={<Badge tone="coral" dot>3 seats</Badge>}>Two weekends, kit included.</Card>
+<Card tone="inverse" eyebrow="Coaching" title="Grow your studio" footer={<Button size="sm" variant="secondary">Learn more</Button>}>Pricing, clients and content for new graduates.</Card></div>
+<Row gap={8}><Badge tone="plum">New</Badge><Badge tone="blush">Hair</Badge><Badge tone="coral" dot>Few seats</Badge><Badge tone="champagne">Certified</Badge><Badge tone="outline">Online</Badge><span style={{width:12}}></span><Tag selected>Makeup</Tag><Tag>Hair</Tag><Tag onRemove={()=>{}}>Lisboa</Tag></Row></div>;}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+setTimeout(()=>window.lucide&&lucide.createIcons(),50);
+</script></body></html>

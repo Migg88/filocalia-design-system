@@ -1,0 +1,50 @@
+:root{
+  /* Brand palette — the only five hues */
+  --plum:#4A2C4F;
+  --blush:#E8B4B8;
+  --coral:#B4553F;
+  --champagne:#D4B483;
+  --nude:#F7EDE6;
+
+  /* Derived steps (tints/shades of the five, for UI states only) */
+  --plum-hover:#5C3A62;
+  --plum-press:#3B2240;
+  --plum-a08:rgba(74,44,79,.08);
+  --plum-a16:rgba(74,44,79,.16);
+  --plum-a32:rgba(74,44,79,.32);
+  --plum-a64:rgba(74,44,79,.64);
+  --blush-hover:#E0A3A8;
+  --blush-soft:#F3D6D7;
+  --coral-hover:#9E4935;
+  --coral-soft:#F1D9D1;
+  --champagne-soft:#EFE1C9;
+  --nude-raised:#FCF7F3;
+  --nude-sunken:#F0E2D9;
+
+  /* Semantic aliases */
+  --surface-page:var(--nude);
+  --surface-card:var(--nude-raised);
+  --surface-sunken:var(--nude-sunken);
+  --surface-inverse:var(--plum);
+  --surface-accent:var(--blush);
+
+  --text-primary:var(--plum);
+  --text-secondary:rgba(74,44,79,.74);
+  --text-muted:rgba(74,44,79,.56);
+  --text-on-inverse:var(--nude);
+  --text-on-accent:var(--plum);
+  --text-link:var(--plum);
+  --text-link-underline:var(--coral);
+  --text-link-hover:var(--coral-hover);
+
+  --border-subtle:var(--plum-a16);
+  --border-strong:var(--plum-a32);
+  --border-focus:var(--coral);
+
+  --status-error:var(--coral);
+  --status-error-bg:var(--coral-soft);
+  --status-info:var(--plum);
+  --status-info-bg:var(--blush-soft);
+  --status-highlight:var(--champagne);
+  --status-highlight-bg:var(--champagne-soft);
+}
